@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html class="no-js css-menubar" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="bootstrap material admin template">
+    <meta name="author" content="">
+    
+    <title>Pothole on Map | CSP 16 </title>
+    
+    <link rel="apple-touch-icon" href="{{url_for('static', filename='base/assets')}}/images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="{{url_for('static', filename='base/assets')}}/images/favicon.ico">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/css/bootstrap-extend.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='base/assets')}}/css/site.min.css">
+    
+    <!-- Plugins -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/vendor/animsition/animsition.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/vendor/asscrollable/asScrollable.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/vendor/switchery/switchery.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/vendor/intro-js/introjs.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/vendor/slidepanel/slidePanel.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/vendor/flag-icon-css/flag-icon.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/vendor/waves/waves.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/vendor/mapbox-js/mapbox.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='base/assets')}}/examples/css/apps/location.css">
+    
+    
+    <!-- Fonts -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/fonts/font-awesome/font-awesome.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/fonts/web-icons/web-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/fonts/material-design/material-design.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='global')}}/fonts/brand-icons/brand-icons.min.css">
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+    
+    <!--[if lt IE 9]>
+    <script src="{{ url_for('static', filename='global')}}/vendor/html5shiv/html5shiv.min.js"></script>
+    <![endif]-->
+    
+    <!--[if lt IE 10]>
+    <script src="{{ url_for('static', filename='global')}}/vendor/media-match/media.match.min.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/respond/respond.min.js"></script>
+    <![endif]-->
+    
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='global')}}/vendor/breakpoints/breakpoints.js"></script>
+    <script>
+      Breakpoints();
+    </script>
+  </head>
+  <body class="animsition app-location page-aside-scroll page-aside-left">
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega" role="navigation">
+        <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
+            <span class="navbar-brand-text hidden-xs-down">Pothole finder</span>
+          </div>
+      </nav>
+    
+
+    <div class="page">
+      <!-- Firends Sidebar -->
+      <div class="page-aside">
+        <div class="page-aside-switch">
+          <i class="icon md-chevron-left" aria-hidden="true"></i>
+          <i class="icon md-chevron-right" aria-hidden="true"></i>
+        </div>
+        <div class="page-aside-inner">
+          <!-- Search Panel -->
+          <div class="search-friends panel">
+            <div class="panel-heading">
+              <div class="panel-actions">
+                <div class="input-search input-group-sm">
+                  <button type="submit" class="input-search-btn">
+                    <i class="icon md-search" aria-hidden="true"></i>
+                  </button>
+                  <input type="text" class="form-control" name="" placeholder="Search...">
+                </div>
+              </div>
+              <h3 class="panel-title"></h3>
+            </div>
+          </div>
+          <!-- End Search Panel -->
+          <!-- Firends List -->
+          <div class="app-location-list page-aside-scroll">
+            <div data-role="container">
+              <div data-role="content">
+                <div class="list-group row flex-row">
+                    {% for x in issuelist %}
+                  <div class="list-group-item col-xxl-6 friend-info" data-friend-id="f_1">
+                    <div class="card card-shadow w-full">
+                      <div class="card-block text-center bg-white p-20">
+                        <a href="#" class="mb-5">
+                          <img height="50" width="50" class="friend-icon" src="{{all_issues_thumbnail[x]}}"
+                            alt="Adam_photo" />
+                        </a>
+                        <div class="friend-name">{{all_issues_category[x]}}</div>
+                        <div class="loclat">{{all_issues_lat[x]}}</div>
+                        <div class="loclong">{{all_issues_long[x]}}</div>
+                        <div class="friend-title mb-20 blue-grey-400">
+                          {{all_issues_name[x]}}.
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Firends List -->
+        </div>
+      </div>
+      <!-- End Firends Sidebar -->
+
+      <div class="page-main">
+        <div id="map">
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      
+    </footer>
+    <!-- Core  -->
+    <script src="{{ url_for('static', filename='global')}}/vendor/babel-external-helpers/babel-external-helpers.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/jquery/jquery.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/popper-js/umd/popper.min.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/bootstrap/bootstrap.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/animsition/animsition.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/mousewheel/jquery.mousewheel.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/asscrollbar/jquery-asScrollbar.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/asscrollable/jquery-asScrollable.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/ashoverscroll/jquery-asHoverScroll.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/waves/waves.js"></script>
+    
+    <!-- Plugins -->
+    <script src="{{ url_for('static', filename='global')}}/vendor/switchery/switchery.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/intro-js/intro.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/screenfull/screenfull.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/slidepanel/jquery-slidePanel.js"></script>
+        <script src="{{ url_for('static', filename='global')}}/vendor/slidepanel/jquery-slidePanel.js"></script>
+        <script src="{{ url_for('static', filename='global')}}/vendor/mapbox-js/mapbox.js"></script>
+        <script src="{{ url_for('static', filename='global')}}/vendor/mapbox-js/leaflet.markercluster.js"></script>
+    
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='global')}}/js/Component.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/js/Plugin.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/js/Base.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/js/Config.js"></script>
+    
+    <script src="{{url_for('static', filename='base/assets')}}/js/Section/Menubar.js"></script>
+    <script src="{{url_for('static', filename='base/assets')}}/js/Section/GridMenu.js"></script>
+    <script src="{{url_for('static', filename='base/assets')}}/js/Section/Sidebar.js"></script>
+    <script src="{{url_for('static', filename='base/assets')}}/js/Section/PageAside.js"></script>
+    <script src="{{url_for('static', filename='base/assets')}}/js/Plugin/menu.js"></script>
+    
+    <script src="{{ url_for('static', filename='global')}}/js/config/colors.js"></script>
+    <script src="{{url_for('static', filename='base/assets')}}/js/config/tour.js"></script>
+    <script>Config.set('assets', '../../../assets');</script>
+    
+    <!-- Page -->
+    <script src="{{url_for('static', filename='base/assets')}}/js/Site.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/js/Plugin/asscrollable.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/js/Plugin/slidepanel.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/js/Plugin/switchery.js"></script>
+        <script src="{{url_for('static', filename='base/assets')}}/js/Site.js"></script>
+        <script src="{{url_for('static', filename='base/assets')}}/js/App/Location.js"></script>
+    
+        <script src="{{url_for('static', filename='base/assets')}}/examples/js/apps/location.js"></script>
+    
+  </body>
+</html>

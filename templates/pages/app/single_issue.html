@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+    <meta name="author" content="Creative Tim">
+    <title>Current Viewing Issue #{{issue_id}} | CSP 16</title>
+    <!-- Extra details for Live View on GitHub Pages -->
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='assets')}}/img/brand/favicon.png" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets')}}/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets')}}/vendor/%40fortawesome/fontawesome-free/css/all.min.css"
+        type="text/css">
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets')}}/css/argon.mine209.css?v=1.0.0" type="text/css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets')}}/vendor/quill/dist/quill.core.css">
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='global')}}/vendor/breakpoints/breakpoints.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/ply_libs/three.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/ply_libs/OrbitControls.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/ply_libs/Detector.js"></script>
+    <script src="{{ url_for('static', filename='global')}}/vendor/ply_libs/PLYLoader.js"></script>
+
+</head>
+
+<body>
+    <!-- Sidenav -->
+    <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+        <div class="scrollbar-inner">
+            <!-- Brand -->
+            <div class="sidenav-header d-flex align-items-center">
+                <a class="navbar-brand" href="../dashboards/dashboard.html">
+                    <img src="{{ url_for('static', filename='assets')}}/img/brand/blue.png" class="navbar-brand-img"
+                        alt="...">
+                </a>
+                <div class="ml-auto">
+                    <!-- Sidenav toggler -->
+                    <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
+                        <div class="sidenav-toggler-inner">
+                            <i class="sidenav-toggler-line"></i>
+                            <i class="sidenav-toggler-line"></i>
+                            <i class="sidenav-toggler-line"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar-inner">
+                <!-- Collapse -->
+                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                    <!-- Nav items -->
+                    <hr class="my-3">
+                    <!-- Heading -->
+                    <h6 class="navbar-heading p-0 text-muted">Utitlities</h6>
+                    <!-- Navigation -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                <i class="fa fa-home text-blue"></i>
+                                <span class="nav-link-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/app/issues">
+                                <i class="ni ni-bullet-list-67 text-red"></i>
+                                <span class="nav-link-text">Issues</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/app/issues/map">
+                                <i class="ni ni-map-big text-green"></i>
+                                <span class="nav-link-text">Issues on Map</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/app/issues/create">
+                                <i class="ni ni-fat-add text-indigo"></i>
+                                <span class="nav-link-text">Create new Issue</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <hr class="my-3">
+                    <!-- Heading -->
+                    <h6 class="navbar-heading p-0 text-muted">Profile</h6>
+                    <!-- Navigation -->
+                    <ul class="navbar-nav mb-md-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/app/profile">
+                                <i class="ni ni-single-02 text-blue"></i>
+                                <span class="nav-link-text">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/app/profile/settings">
+                                <i class="ni ni-settings-gear-65 text-green"></i>
+                                <span class="nav-link-text">Settings</span>
+                            </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">
+                                <i class="ni ni-button-power text-red"></i>
+                                <span class="nav-link-text">Logout</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main content -->
+    <div class="main-content" id="panel">
+        <!-- Topnav -->
+        <nav class="navbar navbar-top navbar-expand navbar-dark bg-default border-bottom">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Search form -->
+                    <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+                        <div class="form-group mb-0">
+                            <div class="input-group input-group-alternative input-group-merge">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                </div>
+                                <input class="form-control" placeholder="Search" type="text">
+                            </div>
+                        </div>
+                        <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main"
+                            aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </form>
+                    <!-- Navbar links -->
+                    <ul class="navbar-nav align-items-center ml-md-auto">
+                        <li class="nav-item d-xl-none">
+                            <!-- Sidenav toggler -->
+                            <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
+                                data-target="#sidenav-main">
+                                <div class="sidenav-toggler-inner">
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                    <i class="sidenav-toggler-line"></i>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item d-sm-none">
+                            <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                                <i class="ni ni-zoom-split-in"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="ni ni-bell-55"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right py-0 overflow-hidden">
+                                <!-- Dropdown header -->
+                                <div class="px-3 py-3">
+                                    <h6 class="text-sm text-muted m-0">You have <strong class="text-primary">13</strong>
+                                        notifications.</h6>
+                                </div>
+                                <!-- List group -->
+                                <div class="list-group list-group-flush">
+                                    <a href="#!" class="list-group-item list-group-item-action">
+                                        <div class="row align-items-center">
+                                            <div class="col-auto">
+                                                <!-- Avatar -->
+                                                <img alt="Image placeholder" src="{{ url_for('static', filename='assets')}}/img/theme/team-1.jpg"
+                                                    class="avatar rounded-circle">
+                                            </div>
+                                            <div class="col ml--2">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h4 class="mb-0 text-sm">John Snow</h4>
+                                                    </div>
+                                                    <div class="text-right text-muted">
+                                                        <small>2 hrs ago</small>
+                                                    </div>
+                                                </div>
+                                                <p class="text-sm mb-0">Let's meet at Starbucks at 11:30. Wdyt?</p>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                </div>
+                                <!-- View all -->
+                                <a href="#!" class="dropdown-item text-center text-primary font-weight-bold py-3">View
+                                    all</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav align-items-center ml-auto ml-md-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <div class="media align-items-center">
+                                    <span class="avatar avatar-sm rounded-circle">
+                                        <img alt="Image placeholder" src="{{ url_for('static', filename='assets')}}/img/theme/team-4.jpg">
+                                    </span>
+                                    <div class="media-body ml-2 d-none d-lg-block">
+                                        <span class="mb-0 text-sm  font-weight-bold">{{user_name}}</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Welcome!</h6>
+                                </div>
+                                <a href="/app/profile" class="dropdown-item">
+                                    <i class="ni ni-single-02"></i>
+                                    <span>My profile</span>
+                                </a>
+                                <a href="/app/profile/settings" class="dropdown-item">
+                                    <i class="ni ni-settings-gear-65"></i>
+                                    <span>Settings</span>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="/logout" class="dropdown-item">
+                                    <i class="ni ni-button-power"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Header -->
+        <!-- Header -->
+        <div class="header bg-primary pb-6">
+            <div class="container-fluid">
+                <div class="header-body">
+                    <div class="row align-items-center py-4">
+                        <div class="col-lg-6 col-7">
+                            <h6 class="h2 text-white d-inline-block mb-0">Issues</h6>
+                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Issues</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Issue #{{issue_id}}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="col-lg-6 col-5 text-right">
+                            <a href="#" class="btn btn-sm btn-neutral">New</a>
+                            <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page content -->
+        <div class="container-fluid mt--6">
+            <div class="row">
+                <div class="col-xl-4 order-xl-2">
+                    <!-- Progress track -->
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header">
+                            <!-- Title -->
+                            <h5 class="h3 mb-0">Cruicial Information</h5>
+                        </div>
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <h6 class="heading-small text-muted mb-4">Uploaded By</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>Issue Uploaded by <b>{{issue_uploader}}</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-4" />
+                            <h6 class="heading-small text-muted mb-4">Uploaded On</h6>
+                            <div class="pl-lg-4">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>Issue Uploaded on <b>{{issue_time}}</b></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-pricing bg-gradient-info border-0 text-center mb-4">
+                        <div class="card-header bg-transparent">
+                            <h4 class="text-uppercase ls-1 text-white py-3 mb-0">Cost of repair</h4>
+                        </div>
+                        <div class="card-body px-lg-7">
+                            <div class="display-2 text-white">₹{{issue_cost}}</div>
+                            <span class=" text-white">for full repairs</span>
+                            <ul class="list-unstyled my-4">
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="icon icon-xs icon-shape bg-white shadow rounded-circle">
+                                                <i class="fas fa-hdd"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span class="pl-2 text-sm text-white">Cost of Cement : <b>₹
+                                                    {{issue_cost_cement}}</b></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="icon icon-xs icon-shape bg-white shadow rounded-circle">
+                                                <i class="fas fa-hdd"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span class="pl-2 text-sm text-white">Cost of Sand : <b>₹
+                                                    {{issue_cost_sand}}</b></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="d-flex align-items-center">
+                                        <div>
+                                            <div class="icon icon-xs icon-shape bg-white shadow rounded-circle">
+                                                <i class="fas fa-hdd"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span class="pl-2 text-sm text-white">Cost of Aggregate : <b>₹
+                                                    {{issue_cost_aggregate}}</b> </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header">
+                            <h3 class="mb-0">Feedback Images</h3>
+                        </div>
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <form action="/app/issues/feedback/{{issue_id}}" role="form" enctype="multipart/form-data"
+                                method="POST">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="custom-file">
+                                            <input type="file" name="file" class="custom-file-input" id="customFileLang"
+                                                lang="en">
+                                            <label class="custom-file-label" for="customFileLang">Select file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <br>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary" type="submit">Upload</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card bg-gradient-default shadow">
+                        <div class="card-header bg-transparent">
+                            <h3 class="mb-0 text-white">Progress track</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline timeline-one-side" data-timeline-content="axis"
+                                data-timeline-axis-style="dashed">
+                                {% for progress_report in progress_reports %}
+                                {% if progress_report['type'] == 'created' %}
+                                <div class="timeline-block">
+                                    <span class="timeline-step badge-success">
+                                        <i class="ni ni-fat-add"></i>
+                                    </span>
+                                    <div class="timeline-content">
+                                        <small class="text-light font-weight-bold">{{progress_report['time']}},
+                                            {{progress_report['date']}}</small>
+                                        <h5 class="text-white mt-3 mb-0">Issue Created!</h5>
+                                        <p class="text-light text-sm mt-1 mb-0">Issue was created by
+                                            {{progress_report['uploader']}}.</p>
+                                        <div class="mt-3">
+                                            <span class="badge badge-pill badge-success">created</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% elif progress_report['type'] == 'fixed' %}
+                                <div class="timeline-block">
+                                    <span class="timeline-step badge-success">
+                                        <i class="ni ni-check-bold"></i>
+                                    </span>
+                                    <div class="timeline-content">
+                                        <small class="text-light font-weight-bold">{{progress_report['time']}},
+                                            {{progress_report['date']}}</small>
+                                        <h5 class="text-white mt-3 mb-0">Damage Fixed!</h5>
+                                        <p class="text-light text-sm mt-1 mb-0">Damage control checked new image
+                                            uploaded by {{progress_report['uploader']}}, and the damage was found to be
+                                            fixed.</p>
+                                        <div class="mt-3">
+                                            <span class="badge badge-pill badge-success">fixed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% elif progress_report['type'] == 'not fixed' %}
+                                <div class="timeline-block">
+                                    <span class="timeline-step badge-danger">
+                                        <i class="ni ni-fat-delete"></i>
+                                    </span>
+                                    <div class="timeline-content">
+                                        <small class="text-light font-weight-bold">{{progress_report['time']}},
+                                            {{progress_report['date']}}</small>
+                                        <h5 class="text-white mt-3 mb-0">Damage not fixed!</h5>
+                                        <p class="text-light text-sm mt-1 mb-0">Damage control checked new image
+                                            uploaded by {{progress_report['uploader']}}, and the damage was found to be
+                                            not fixed.</p>
+                                        <div class="mt-3">
+                                            <span class="badge badge-pill badge-danger">Not fixed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% elif progress_report['type'] == 'referenced' %}
+                                <div class="timeline-block">
+                                    <span class="timeline-step badge-info">
+                                        <i class="ni ni-pin-3"></i>
+                                    </span>
+                                    <div class="timeline-content">
+                                        <small class="text-light font-weight-bold">{{progress_report['time']}},
+                                            {{progress_report['date']}}</small>
+                                        <h5 class="text-white mt-3 mb-0">Issue Referenced!</h5>
+                                        <p class="text-light text-sm mt-1 mb-0">This issue was referenced by
+                                            {{progress_report['uploader']}}.</p>
+                                        <div class="mt-3">
+                                            <span class="badge badge-pill badge-info">referenced</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8 order-xl-1">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card bg-gradient-info border-0">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0 text-white">No. of
+                                                times reported (today)</h5>
+                                            <span class="h2 font-weight-bold mb-0 text-white">{{issue_reported_number_today}}</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-white text-dark rounded-circle shadow">
+                                                <i class="ni ni-active-40"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 mb-0 text-sm">
+                                        <span class="text-white mr-2"><i class="fa fa-arrow-up"></i> {{today_change}}%</span>
+                                        <span class="text-nowrap text-light">Since yesterday</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card bg-gradient-danger border-0">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0 text-white">Severity
+                                                Rank</h5>
+                                            <span class="h2 font-weight-bold mb-0 text-white">1</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-white text-dark rounded-circle shadow">
+                                                <i class="fa fa-exclamation-triangle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="mt-3 mb-0 text-sm">
+                                        <span class="text-white mr-2"><i class="fa fa-arrow-up"></i> 0</span>
+                                        <span class="text-nowrap text-light">Since yesterday</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-8">
+                                    <h3 class="mb-0">Currently Viewing : Issue #{{issue_id}} : {{issue_title}} </h3>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <a href="{{issue_document}}" download class="btn btn-sm btn-primary">Download
+                                        Report</a>
+
+                                    <a target="_blank" rel="noopener noreferrer" href="/view/model/{{issue_id}}" class="btn btn-sm btn-primary">View
+                                        Model</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form>
+                                <h6 class="heading-small text-muted mb-4">Description</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>{{issue_description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <!-- Address -->
+                                <h6 class="heading-small text-muted mb-4">Location</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p><b>Address</b> : {{issue_location}}</a></p>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <iframe width="450" height="338" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{issue_lat}}%2C%20{{issue_lon}}&key=AIzaSyDqwq58gRX2RO2kjubCGocacSa5l9Emu7k"
+                                                allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <!-- Description -->
+                                <h6 class="heading-small text-muted mb-4">3D Reconstruction</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div id="pointclouds_container" class="col-10">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="my-4" />
+                                <!-- Description -->
+                                <h6 class="heading-small text-muted mb-4">Calculated Volume</h6>
+                                <div class="pl-lg-4">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>Volume : {{issue_volume}} ml</p>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="h3 mb-0">Activity feed</h5>
+                        </div>
+                        <div class="card-header d-flex align-items-center">
+                            <div class="d-flex align-items-center">
+                                <a href="#">
+                                    <img src="{{ url_for('static', filename='assets')}}/img/theme/team-1.jpg" class="avatar">
+                                </a>
+                                <div class="mx-3">
+                                    <a href="#" class="text-dark font-weight-600 text-sm">{{issue_uploader}}</a>
+                                    <small class="d-block text-muted">{{issue_time}}</small>
+                                </div>
+                            </div>
+                            <div class="text-right ml-auto">
+                                <button type="button" class="btn btn-sm btn-primary btn-icon">
+                                    <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
+                                    <span class="btn-inner--text">Follow</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-4">
+                                {{issue_description}}
+                                <br>
+                                Initial uploads :
+                            </p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <img alt="Image placeholder" src="{{issue_image_one}}" class="img-fluid rounded">
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <img alt="Image placeholder" src="{{issue_image_two}}" class="img-fluid rounded">
+                                </div>
+
+                            </div>
+                            <hr class="my-4" />
+                            <!-- Comments -->
+                            <div class="mb-1">
+                                {% for comment in issue_comments %}
+                                <div class="media media-comment">
+                                    <img alt="Image placeholder" class="avatar avatar-lg media-comment-avatar rounded-circle"
+                                        src="{{ url_for('static', filename='assets')}}/img/theme/team-1.jpg">
+                                    <div class="media-body">
+                                        <div class="media-comment-text">
+                                            <h6 class="h5 mt-0">{{comment['uploader']}}</h6>
+                                            <small>{{comment['date']}}, {{comment['time']}}</small>
+                                            <p class="text-sm lh-160">{{comment['text'] | safe}}</p>
+                                            <div class="icon-actions">
+                                                <a href="/app/issues/comments/upvote/{{comment['id']}}" class="like active">
+                                                    <i class="ni ni-like-2"></i>
+                                                    <span class="text-muted">{{comment['votes']}} likes</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                <hr />
+                                <div class="media align-items-center">
+                                    <img alt="Image placeholder" class="avatar avatar-lg rounded-circle mr-4" src="{{ url_for('static', filename='assets')}}/img/theme/team-3.jpg">
+                                    <div class="media-body">
+                                        <form name="commentForm" method="post">
+                                            <input name="text" type="hidden">
+                                            <div id="editor-container" data-quill-placeholder="Quill WYSIWYG">
+
+                                            </div>
+
+                                            <button class="btn btn-primary" type="submit">Comment</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3 class="card-title mb-3">Damage Document</h3>
+                            <embed src="{{issue_document}}" type="application/pdf" width="100%" height="600px" />
+
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+            <!-- Footer -->
+            <footer class="footer pt-0">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-6">
+                        <div class="copyright text-center text-lg-left text-muted">
+                            &copy; 2019 <a href="https://github.com/C-Aniruddh" class="font-weight-bold ml-1" target="_blank">CSP
+                                16</a>
+                        </div>
+                    </div>
+
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+    <script>
+        if (!Detector.webgl) Detector.addGetWebGLMessage();
+
+
+        var scene = new THREE.Scene();
+        <!--scene.background = new THREE.Color( 0xffffff );-->
+        var camera = new THREE.PerspectiveCamera(60, 4 / 3, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+
+        var container_id = "pointclouds_container";
+
+        container = document.getElementById(container_id);
+        container.appendChild(renderer.domElement);
+
+        var controls = new THREE.OrbitControls(camera, renderer.domElement);
+        // enable animation loop when using damping or autorotation
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.5;
+        controls.enableZoom = true;
+
+        var rotation_x = Math.PI;
+        var rotation_y = Math.PI;
+        var translation_z = 1;
+
+
+        var loader = new THREE.PLYLoader();
+        loader.load('{{issue_points}}', function (geometry) {
+
+            var material = new THREE.PointsMaterial();
+            material.size = 0.05;
+            material.vertexColors = THREE.VertexColors;
+
+            var mesh = new THREE.Points(geometry, material);
+
+            mesh.rotation.x = Math.PI;
+            mesh.position.z = translation_z;
+            scene.add(mesh);
+
+        })
+
+        cam_geometry_fn = function (geometry) {
+            var material = new THREE.MeshBasicMaterial({
+                color: 0xffffff
+            });
+            material.wireframe = true;
+            var mesh = new THREE.Mesh(geometry, material);
+            mesh.rotation.x = Math.PI;
+            mesh.position.z = translation_z;
+            scene.add(mesh);
+        };
+
+        loader.load('{{issue_cam1}}', cam_geometry_fn);
+        loader.load('{{issue_cam2}}', cam_geometry_fn);
+
+        camera.position.z = 5;
+
+
+        var render = function () {
+            <!--requestAnimationFrame( render );-->
+            <!--controls.update();-->
+
+            renderer.render(scene, camera);
+        };
+
+        function onWindowResize() {
+
+
+            container = document.getElementById(container_id);
+            prev_col = container.previousElementSibling;
+            // var height = prev_col.offsetHeight;
+
+            var height = 330;
+
+            var style = container.currentStyle || window.getComputedStyle(container),
+                width = container.offsetWidth, // or use style.width
+                // margin = parseFloat(style.marginLeft) + parseFloat(style.marginRight),
+                // border = parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth),
+                padding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+
+            var aspect_ratio = 4 / 3;
+            var container_width = width - padding;
+            var container_height = container_width / aspect_ratio;
+
+            camera.aspect = aspect_ratio;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(container_width, container_height);
+            render();
+        }
+
+        // redraw after loading something
+        THREE.DefaultLoadingManager.onLoad = function () {
+            render();
+        }
+
+        controls.addEventListener('change', render); // remove when using animation loop
+        window.addEventListener('resize', onWindowResize, false);
+
+        onWindowResize();
+    </script>
+
+
+    <script>
+        Breakpoints();
+    </script>
+
+    <!-- Argon Scripts -->
+    <!-- Core -->
+    <script src="{{ url_for('static', filename='assets')}}/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='assets')}}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='assets')}}/vendor/js-cookie/js.cookie.js"></script>
+    <script src="{{ url_for('static', filename='assets')}}/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="{{ url_for('static', filename='assets')}}/vendor/quill/dist/quill.min.js"></script>
+    <script src="{{ url_for('static', filename='assets')}}/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <script src="{{ url_for('static', filename='assets')}}/vendor/lavalamp/js/jquery.lavalamp.min.js"></script>
+    <script>
+        var quill = new Quill('#editor-container', {
+            modules: {
+                toolbar: [
+                    ['bold', 'italic'],
+                    ['link', 'blockquote', 'code-block', 'image'],
+                    [{
+                        list: 'ordered'
+                    }, {
+                        list: 'bullet'
+                    }]
+                ]
+            },
+            placeholder: 'Compose an epic...',
+            theme: 'snow'
+        });
+
+        var form = document.querySelector('form[name=commentForm]');
+        form.onsubmit = function () {
+            // Populate hidden form on submit
+            var about = document.querySelector('input[name=text]');
+            about.value = JSON.stringify(quill.getContents());
+            var myEditor = document.querySelector('#editor-container')
+            var html = myEditor.children[0].innerHTML
+
+            console.log("Submitted", $(form).serialize(), $(form).serializeArray());
+
+            // No back end to actually submit to!
+            $.post("/app/issues/{{issue_id}}/add_comment", {
+                    text: html
+                },
+                function (data, status) {
+                    //alert("Data: " + data + "\nStatus: " + status);
+                });
+            return false;
+        };
+    </script>
+    <!-- Argon JS -->
+    <script src="{{ url_for('static', filename='assets')}}/js/argon.mine209.js?v=1.0.0"></script>
+    <!-- Demo JS - remove this in your project -->
+    <script src="{{ url_for('static', filename='assets')}}/js/demo.min.js"></script>
+    <script>
+        // Facebook Pixel Code Don't Delete
+        ! function (f, b, e, v, n, t, s) {
+            if (f.fbq) return;
+            n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', '../../../../connect.facebook.net/en_US/fbevents.js');
+
+        try {
+            fbq('init', '111649226022273');
+            fbq('track', "PageView");
+
+        } catch (err) {
+            console.log('Facebook Track Error:', err);
+        }
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&amp;ev=PageView&amp;noscript=1" />
+    </noscript>
+</body>
+
+
+<!-- Mirrored from demos.creative-tim.com/argon-dashboard-pro/pages/examples/profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Feb 2019 18:38:29 GMT -->
+
+</html>
