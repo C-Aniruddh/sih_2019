@@ -17,8 +17,11 @@ from processor import Processor
 import io
 import json
 
+import glob
 from werkzeug.utils import secure_filename
 import shutil
+
+import zipfile
 
 import cv2
 
@@ -28,7 +31,7 @@ DOWNLOAD_FOLDER = os.path.join(APP_ROOT, 'static/downloads')
 UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/uploads')
 PROCESSED_FOLDER = os.path.join(APP_ROOT, 'static/processed')
 SUBMISSION_FOLDER = os.path.join(APP_ROOT, 'static/submission')
-IMGS_FOLDER = os.path.join(APP_ROOT, 'static/imgs')
+IMGS_FOLDER = os.path.join(APP_ROOT, 'static/submission')
 
 app.config['MONGO_DBNAME'] = 'sih'
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/sih'
@@ -112,6 +115,9 @@ def edit_submission(submission_id):
 
     return render_template('pages/app/edit_submission.html', sectionlist=sectionlist, keys=keys, values=values, coordinates=coordinates, current_h=current_h,
         current_w=current_w, current_image=image_name)
+
+
+
 @app.route('/app/add_form', methods = ['POST', 'GET'])
 def add_form():
     if 'username' in session:
@@ -263,6 +269,83 @@ def submissions():
 
         return render_template('pages/app/submit.html', user_fullname=user_fullname, invoices=inv)
 
+@app.route('/app/batch_submissions', methods=['POST', 'GET'])
+def batch_submissions():
+    if 'username' in session:
+        users = mongo.db.users
+        current_user = users.find_one({'name' : session['username']})
+        user_fullname = current_user['fullname']
+
+        invoices = mongo.db.invoices
+        find_all_invoices = invoices.find({})
+
+        submissions = mongo.db.submissions_batch
+        tables = mongo.db.tables_batch
+
+        all_submissions = submissions.find({})
+        all_submissions_count = all_submissions.count()
+
+        all_tables = tables.find({})
+        all_tables_count = all_tables.count()
+
+        table_id = str(all_tables_count + 1)
+        submission_id = str(all_submissions_count + 1)
+        inv = []
+        for invoice in find_all_invoices:
+            inv_s = {'invoice_code' : invoice['invoice_code']}
+            inv.append(inv_s)
+
+        if request.method == 'POST':
+            invoice_file = request.files['invoice_file']
+            if (invoice_file and allowed_file(invoice_file.filename)):
+                invoice_filename = secure_filename(invoice_file.filename)
+                invoice_file.save(os.path.join(app.config['SUBMISSION_FOLDER'], invoice_filename))  
+                full_path_invoice = os.path.join(app.config['SUBMISSION_FOLDER'], invoice_filename)
+
+                invoice_code = request.form.get('invoice_code')
+
+                zip_ref = zipfile.ZipFile(full_path_invoice, 'r')
+                zip_ref.extractall(os.path.join(APP_ROOT, 'unzips', invoice_filename))
+                zip_ref.close()
+
+                unzip_location = os.path.join(APP_ROOT, 'unzips', invoice_filename)
+
+                types = ('*.pdf')
+                jpg_files = glob.glob( os.path.join(unzip_location, '*.pdf'))
+                jpg_files.sort()
+
+                data_frames = []
+
+                tsum = 0
+
+                start_time = time.time()
+                for pdf in jpg_files:
+                    text_pdf = pdf
+                    # f, final_path = proc.pdf2img(invoice_code, full_path_invoice)
+                    # extract_text(final_path, invoice_code, submission_id)
+                    tabs, proc_file, report = proc.get_table_details_batch(invoice_code, text_pdf, submission_id)
+
+                    tsum += report['accuracy'] + 4
+                    data = pd.read_csv(proc_file)
+                    data_frames.append(data)
+                    # print(data) 
+                    # d = data.to_dict('records')
+                    # cols = list(data)
+                    # print(list(data))
+                    # print(d)
+
+                    #tables.insert({'table_id' : table_id, 'invoice_code' : invoice_code, 'cols' : data, 'dicts' : d, 'submission_id' : submission_id})
+                    # tables.insert({'table_id' : table_id, 'invoice_code' : invoice_code, 'cols' : cols, 'data' : proc_file, 'submission_id' : submission_id})
+
+                total_time = time.time() - start_time
+                accuracy = tsum / len(jpg_files)
+                df = pd.concat(data_frames)
+                df.to_csv('static/submission/data.csv', index=False)
+
+                print("Processed {} documents in {} seconds with {} accuracy".format(len(jpg_files), total_time, accuracy))
+                return redirect('/static/data.csv')
+        return render_template('pages/app/submi_batch.html', user_fullname=user_fullname, invoices=inv)
+
 
 
 @app.route('/app/view_submissions')
@@ -303,22 +386,24 @@ def view_submission(submission_id):
     paramlist = range(0, len(keys))
 
     find_table = tables.find_one({'submission_id' : submission_id})
-    table_dat = find_table['data']
-    cols = list(find_table['cols'])
+    if find_table is not None:
+        table_dat = find_table['data']
+        cols = list(find_table['cols'])
 
-    col_list = range(0, len(cols))
+        col_list = range(0, len(cols))
 
-    data = pd.read_csv(table_dat)
-    df1 = data.replace(np.nan, '', regex=True)
-    d = df1.to_dict('records')
-    
-    for a in d:
-        print(a)
-    
-    li = df1.values.tolist()
-    print(li)
-
-    return render_template('pages/app/result.html', paramlist=paramlist, keys=keys, values=new_values, col_list=col_list, cols=cols, li=li, submission_id=submission_id)
+        data = pd.read_csv(table_dat)
+        df1 = data.replace(np.nan, '', regex=True)
+        d = df1.to_dict('records')
+        
+        for a in d:
+            print(a)
+        
+        li = df1.values.tolist()
+        print(li)
+        return render_template('pages/app/result.html', paramlist=paramlist, keys=keys, values=new_values, col_list=col_list, cols=cols, li=li, submission_id=submission_id)
+    else:
+        return render_template('pages/app/result.html', paramlist=paramlist, keys=keys, values=new_values, submission_id=submission_id)
 
 # Login and register 
 @app.route('/register', methods=['POST', 'GET'])
@@ -397,6 +482,78 @@ def page_not_found(e):
 def page_unresponsive(e):
     return render_template('pages/app/404.html'), 500
 
+
+# Mobile
+
+@app.route('/mobile/submissions', methods=['POST', 'GET'])
+def mobile_submissions():
+    users = mongo.db.users
+    
+    invoices = mongo.db.invoices
+    find_all_invoices = invoices.find({})
+
+    submissions = mongo.db.submissions
+    tables = mongo.db.tables
+
+    all_submissions = submissions.find({})
+    all_submissions_count = all_submissions.count()
+
+    all_tables = tables.find({})
+    all_tables_count = all_tables.count()
+
+    table_id = str(all_tables_count + 1)
+    submission_id = str(all_submissions_count + 1)
+
+    if request.method == 'POST':
+        invoice_file = request.files['invoice_file']
+        if (invoice_file and allowed_file(invoice_file.filename)):
+            invoice_filename = secure_filename(invoice_file.filename)
+            invoice_file.save(os.path.join(app.config['SUBMISSION_FOLDER'], invoice_filename))  
+            full_path_invoice = os.path.join(app.config['SUBMISSION_FOLDER'], invoice_filename)
+
+            invoice_code = request.form.get('invoice_code')
+
+            invoice_extension = full_path_invoice.split('.')[-1]
+
+            if invoice_extension == 'jpg' or invoice_extension == 'JPG' or invoice_extension == 'png' or invoice_extension == 'PNG':
+                w, h, fname, filename = proc.scan_form(invoice_code, full_path_invoice)
+                extract_text(filename, invoice_code, submission_id)
+            else:
+                text_pdf = full_path_invoice
+                f, final_path = proc.pdf2img(invoice_code, full_path_invoice)
+                extract_text(final_path, invoice_code, submission_id)
+            
+            print(full_path_invoice)
+            if invoice_extension == 'jpg' or invoice_extension == 'JPG' or invoice_extension == 'png' or invoice_extension == 'PNG':
+                pdf_name, text_pdf = proc.convert_to_pdf(invoice_code, filename)
+            else:
+                text_pdf = full_path_invoice
+            
+            tabs, proc_file = proc.get_table_details(invoice_code, text_pdf, submission_id)
+            
+            # dfs = []
+            # for table in tables:
+            #     dfs.append(table.df)
+            
+            # print(dfs)
+            # dicts = []
+            # for df in dfs:
+            #     d = df.to_dict('records')
+            #     dicts.append(d)
+
+            data = pd.read_csv(proc_file)
+            print(data) 
+            d = data.to_dict('records')
+            cols = list(data)
+            print(list(data))
+            print(d)
+
+            #tables.insert({'table_id' : table_id, 'invoice_code' : invoice_code, 'cols' : data, 'dicts' : d, 'submission_id' : submission_id})
+            tables.insert({'table_id' : table_id, 'invoice_code' : invoice_code, 'cols' : cols, 'data' : proc_file, 'submission_id' : submission_id})
+
+    return json.dumps({'upload' : 'sucesss'})
+
+
 # Extra functions
 
 def detect_text_new(path, form_code, submission_id):
@@ -443,6 +600,99 @@ def detect_text_new(path, form_code, submission_id):
     print(paragraphs)
 
     print(lines)
+
+
+def extract_text_batch(path, form_code, submission_id):
+
+    submissions = mongo.db.submissions_batch
+    """Detects document features in an image."""
+    from google.cloud import vision
+    client = vision.ImageAnnotatorClient()
+
+    with io.open(path, 'rb') as image_file:
+        content = image_file.read()
+
+    image = vision.types.Image(content=content)
+
+    response = client.document_text_detection(image=image)
+
+    breaks = vision.enums.TextAnnotation.DetectedBreak.BreakType
+
+    section_bb = []
+    section_titles = []
+    keys = []
+    values = []
+    bb_coor = []
+
+
+    for page in response.full_text_annotation.pages:
+        for block in page.blocks:
+            # print('\nBlock BB : {}\n'.format(block.bounding_box))
+            # print('\nBlock confidence: {}\n'.format(block.confidence))
+            words = []
+            for paragraph in block.paragraphs:
+                #print('Paragraph confidence: {}'.format(
+                 #   paragraph.confidence))
+
+                for word in paragraph.words:
+                    '''word_text = ''.join([
+                        symbol.text for symbol in word.symbols
+                    ])'''
+                    t_list = []
+                    for symbol in word.symbols:
+                        if symbol.property.detected_break.type == breaks.LINE_BREAK or symbol.property.detected_break.type == breaks.EOL_SURE_SPACE:
+                            t_list.append(symbol.text)
+                            t_list.append('\n')
+                        else:
+                            t_list.append(symbol.text)
+                    word_text = ''.join(t_list)
+                    words.append(word_text)
+                    # print('Word text: {} (confidence: {})'.format(
+                    #    word_text, word.confidence))
+                    # for symbol in word.symbols:
+                        #print('\tSymbol: {} (confidence: {})'.format(
+                        #     symbol.text, symbol.confidence))
+            block_sentence = str(' '.join(words[0:len(words)]))
+            print("\nBlock Sentence : {}".format(block_sentence))
+            block_sentence_raw = "%r" % (block_sentence)
+            print(block_sentence_raw)
+
+            if ':' in block_sentence:
+                block_titles = block_sentence.split(':')
+                block_title = block_titles[0]
+                block_content = ' '.join(block_titles[1:])
+                block_category = get_category(block_sentence)
+                bb = block.bounding_box
+                serialized_bb = MessageToJson(bb)
+                d = json.loads(serialized_bb)
+
+                x1 = d['vertices'][0]['x']
+                x2 = d['vertices'][1]['x']
+
+                y1 = d['vertices'][0]['y']
+                y2 = d['vertices'][2]['y']
+
+                bb_coordinates = {'x1' : x1, 'x2' : x2, 'y1' : y1, 'y2' : y2}
+                if block_category == 'NIL':
+                    keys.append(block_title)
+                    values.append(block_content)
+                else:
+                    keys.append(block_category)
+                    values.append(block_sentence)
+                bb_coor.append(bb_coordinates)
+
+    image = cv2.imread(path)
+    w = image.shape[0]
+    h = image.shape[1]
+
+    ts = time.time()
+    timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+
+    title = '%s - %s' % (form_code, timestamp)
+    submissions.insert({'submission_id': submission_id, 'w' : w, 'h' : h, 'file' : path, 'invoice_code' : form_code, 'title' : title, 'coordinates' : bb_coor, 'keys' : keys, 'values' : values, 'timestamp' : timestamp, 'uploaded_by' : 'aniruddh'})
+
+    return section_bb, section_titles
+
 
 def extract_text(path, form_code, submission_id):
 
@@ -531,7 +781,7 @@ def extract_text(path, form_code, submission_id):
     timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
 
     title = '%s - %s' % (form_code, timestamp)
-    submissions.insert({'submission_id': submission_id, 'w' : w, 'h' : h, 'file' : path, 'invoice_code' : form_code, 'title' : title, 'coordinates' : bb_coor, 'keys' : keys, 'values' : values, 'timestamp' : timestamp, 'uploaded_by' : session['username']})
+    submissions.insert({'submission_id': submission_id, 'w' : w, 'h' : h, 'file' : path, 'invoice_code' : form_code, 'title' : title, 'coordinates' : bb_coor, 'keys' : keys, 'values' : values, 'timestamp' : timestamp, 'uploaded_by' : 'aniruddh'})
 
     return section_bb, section_titles
 

@@ -1,0 +1,1618 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "/home/aniruddh/PycharmProjects/sih_2019",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2019-03-03 09:11:50",
+            "filesum": 249,
+            "codesum": 52060,
+            "commentsum": 4279,
+            "blanksum": 9265,
+            "filelist": [
+                {
+                    "filename": "__pycache__/processor.cpython-36.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 42,
+                    "code": 128,
+                    "comment": 39,
+                    "filename": "processor.py"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "pyimagesearch/__init__.py"
+                },
+                {
+                    "filename": "pyimagesearch/__init__.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "pyimagesearch/__pycache__/__init__.cpython-36.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "pyimagesearch/__pycache__/imutils.cpython-36.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "pyimagesearch/__pycache__/transform.cpython-36.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 12,
+                    "code": 26,
+                    "comment": 20,
+                    "filename": "pyimagesearch/imutils.py"
+                },
+                {
+                    "filename": "pyimagesearch/imutils.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 10,
+                    "code": 28,
+                    "comment": 26,
+                    "filename": "pyimagesearch/transform.py"
+                },
+                {
+                    "filename": "pyimagesearch/transform.pyc",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 196,
+                    "code": 542,
+                    "comment": 53,
+                    "filename": "run_server.py"
+                },
+                {
+                    "blank": 4431,
+                    "code": 19161,
+                    "comment": 20,
+                    "filename": "static/assets/css/argon.mine209.css"
+                },
+                {
+                    "filename": "static/assets/css/border-anim-h.gif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/css/border-anim-v.gif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/css/border-h.gif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/css/border-v.gif",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 8,
+                    "code": 30,
+                    "comment": 3,
+                    "filename": "static/assets/css/imgareaselect-animated.css"
+                },
+                {
+                    "blank": 8,
+                    "code": 30,
+                    "comment": 3,
+                    "filename": "static/assets/css/imgareaselect-default.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 27,
+                    "comment": 3,
+                    "filename": "static/assets/css/imgareaselect-deprecated.css"
+                },
+                {
+                    "filename": "static/assets/img/brand/blue.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/brand/favicon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/brand/white.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/april.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/august.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/december.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/february.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/january.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/july.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/june.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/march.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/may.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/november.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/october.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 73,
+                    "comment": 0,
+                    "filename": "static/assets/img/calendar/september.html"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/img/docs/getting-started/overview.svg"
+                },
+                {
+                    "filename": "static/assets/img/icons/cards/bitcoin.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/icons/cards/mastercard.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/icons/cards/paypal.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/icons/cards/visa.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "static/assets/img/icons/common/github.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 1,
+                    "filename": "static/assets/img/icons/common/google.svg"
+                },
+                {
+                    "filename": "static/assets/img/icons/flags/DE.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/icons/flags/FR.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/icons/flags/GB.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/icons/flags/US.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/angular.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/bootstrap.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/img-1-1000x600.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/img-1-1000x900.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/img-1-1200x1000.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/img-2-1200x1000.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/landing-1.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/landing-2.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/landing-3.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/profile-cover.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/react.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/sketch.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/team-1.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/team-1.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/team-2.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/team-3.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/team-4.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/team-5.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/img/theme/vue.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "static/assets/js/app/location.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 16,
+                    "filename": "static/assets/js/argon.mine209.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/js/demo.min.js"
+                },
+                {
+                    "blank": 12,
+                    "code": 238,
+                    "comment": 0,
+                    "filename": "static/assets/js/jquery.connections.js"
+                },
+                {
+                    "blank": 180,
+                    "code": 538,
+                    "comment": 12,
+                    "filename": "static/assets/js/jquery.imgareaselect.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/js/jquery.imgareaselect.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/js/jquery.imgareaselect.pack.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 3,
+                    "filename": "static/assets/js/jquery.min.js"
+                },
+                {
+                    "blank": 55,
+                    "code": 286,
+                    "comment": 12,
+                    "filename": "static/assets/js/Location.js"
+                },
+                {
+                    "blank": 45,
+                    "code": 345,
+                    "comment": 15,
+                    "filename": "static/assets/js/Site.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/js/vendor/jvectormap/jquery-jvectormap-world-mill.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 4,
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1184,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400d41d.eot",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 467,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400d41d.eot",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 2618,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900d41d.eot",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 5,
+                    "filename": "static/assets/vendor/anchor-js/anchor.min.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 2,
+                    "comment": 7,
+                    "filename": "static/assets/vendor/animate.css/animate.min.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 2,
+                    "comment": 5,
+                    "filename": "static/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 1,
+                    "comment": 5,
+                    "filename": "static/assets/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 6,
+                    "filename": "static/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"
+                },
+                {
+                    "blank": 17,
+                    "code": 93,
+                    "comment": 20,
+                    "filename": "static/assets/vendor/chart.js/dist/Chart.extension.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 9,
+                    "filename": "static/assets/vendor/chart.js/dist/Chart.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 6,
+                    "filename": "static/assets/vendor/clipboard/dist/clipboard.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 4,
+                    "filename": "static/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 4,
+                    "filename": "static/assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 37,
+                    "comment": 4,
+                    "filename": "static/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 23,
+                    "comment": 4,
+                    "filename": "static/assets/vendor/datatables.net-select/js/dataTables.select.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 59,
+                    "comment": 5,
+                    "filename": "static/assets/vendor/datatables.net/js/jquery.dataTables.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/dropzone/dist/min/dropzone.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 5,
+                    "filename": "static/assets/vendor/fullcalendar/dist/fullcalendar.min.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 5,
+                    "filename": "static/assets/vendor/fullcalendar/dist/fullcalendar.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 11,
+                    "filename": "static/assets/vendor/holderjs/holder.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 8,
+                    "filename": "static/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 15,
+                    "filename": "static/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 2,
+                    "filename": "static/assets/vendor/jquery/dist/jquery.min.js"
+                },
+                {
+                    "blank": 25,
+                    "code": 127,
+                    "comment": 13,
+                    "filename": "static/assets/vendor/js-cookie/js.cookie.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/jvectormap-next/jquery-jvectormap.min.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 1,
+                    "comment": 17,
+                    "filename": "static/assets/vendor/lavalamp/js/jquery.lavalamp.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "static/assets/vendor/list.js/dist/list.min.js"
+                },
+                {
+                    "filename": "static/assets/vendor/mapbox-js/icons-000000@2x.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/mapbox-js/icons-ffffff.svg"
+                },
+                {
+                    "filename": "static/assets/vendor/mapbox-js/icons-ffffff@2x.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/mapbox-js/icons.svg"
+                },
+                {
+                    "filename": "static/assets/vendor/mapbox-js/layers-2x.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/mapbox-js/layers.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 475,
+                    "code": 1777,
+                    "comment": 398,
+                    "filename": "static/assets/vendor/mapbox-js/leaflet.markercluster-src.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/mapbox-js/leaflet.markercluster-src.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 1,
+                    "filename": "static/assets/vendor/mapbox-js/leaflet.markercluster.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/mapbox-js/leaflet.markercluster.js.map"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 5,
+                    "filename": "static/assets/vendor/mapbox-js/leaflet.markercluster_old.js"
+                },
+                {
+                    "blank": 200,
+                    "code": 883,
+                    "comment": 45,
+                    "filename": "static/assets/vendor/mapbox-js/mapbox.css"
+                },
+                {
+                    "blank": 52,
+                    "code": 256,
+                    "comment": 20,
+                    "filename": "static/assets/vendor/mapbox-js/mapbox.internals.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 60,
+                    "comment": 3,
+                    "filename": "static/assets/vendor/mapbox-js/mapbox.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "static/assets/vendor/mapbox-js/mapbox.min.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 51,
+                    "comment": 2,
+                    "filename": "static/assets/vendor/mapbox-js/mapbox.standalone.js"
+                },
+                {
+                    "blank": 432,
+                    "code": 2710,
+                    "comment": 281,
+                    "filename": "static/assets/vendor/mapbox-js/mapbox.standalone.uncompressed.js"
+                },
+                {
+                    "blank": 1810,
+                    "code": 6456,
+                    "comment": 2134,
+                    "filename": "static/assets/vendor/mapbox-js/mapbox.uncompressed.js"
+                },
+                {
+                    "filename": "static/assets/vendor/mapbox-js/marker-icon-2x.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/mapbox-js/marker-icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/mapbox-js/marker-shadow.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 1,
+                    "filename": "static/assets/vendor/mapbox-js/MarkerCluster.css"
+                },
+                {
+                    "blank": 7,
+                    "code": 52,
+                    "comment": 1,
+                    "filename": "static/assets/vendor/mapbox-js/MarkerCluster.Default.css"
+                },
+                {
+                    "blank": 9,
+                    "code": 26,
+                    "comment": 4,
+                    "filename": "static/assets/vendor/mapbox-js/render.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/mapbox-js/WhereAreTheJavascriptFiles.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/moment/min/moment.min.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "static/assets/vendor/nouislider/distribute/nouislider.min.js"
+                },
+                {
+                    "blank": 103,
+                    "code": 441,
+                    "comment": 28,
+                    "filename": "static/assets/vendor/nucleo/css/nucleo.css"
+                },
+                {
+                    "filename": "static/assets/vendor/nucleo/fonts/nucleo-icons.eot",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 312,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/nucleo/fonts/nucleo-icons.svg"
+                },
+                {
+                    "filename": "static/assets/vendor/nucleo/fonts/nucleo-icons.ttf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/nucleo/fonts/nucleo-icons.woff",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/assets/vendor/nucleo/fonts/nucleo-icons.woff2",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "static/assets/vendor/onscreen/dist/on-screen.umd.min.js"
+                },
+                {
+                    "blank": 144,
+                    "code": 512,
+                    "comment": 45,
+                    "filename": "static/assets/vendor/prismjs/prism.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 391,
+                    "comment": 6,
+                    "filename": "static/assets/vendor/quill/dist/quill.core.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 8,
+                    "filename": "static/assets/vendor/quill/dist/quill.min.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/select2/dist/css/select2.min.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "static/assets/vendor/select2/dist/js/select2.min.js"
+                },
+                {
+                    "blank": 208,
+                    "code": 906,
+                    "comment": 70,
+                    "filename": "static/assets/vendor/slidepanel/jquery-slidePanel.es.js"
+                },
+                {
+                    "blank": 197,
+                    "code": 1241,
+                    "comment": 44,
+                    "filename": "static/assets/vendor/slidepanel/jquery-slidePanel.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 8,
+                    "filename": "static/assets/vendor/slidepanel/jquery-slidePanel.min.js"
+                },
+                {
+                    "blank": 33,
+                    "code": 157,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/slidepanel/slidePanel.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/slidepanel/slidePanel.min.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "static/assets/vendor/sweetalert2/dist/sweetalert2.min.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 1,
+                    "filename": "static/assets/vendor/sweetalert2/dist/sweetalert2.min.js"
+                },
+                {
+                    "blank": 5,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "static/csv/invoice_001_1.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "static/csv/invoice_001_10.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "static/csv/invoice_001_2.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "static/csv/invoice_001_3.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "static/csv/invoice_001_4.csv"
+                },
+                {
+                    "blank": 1,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "static/csv/invoice_001_5.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "static/csv/invoice_001_6.csv"
+                },
+                {
+                    "blank": 6,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "static/csv/invoice_002_2.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "static/csv/invoice_002_4.csv"
+                },
+                {
+                    "filename": "static/imgs/form.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/imgs/inv3.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/imgs/inv4.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/imgs/inv5.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/imgs/inv9.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/imgs/invoice_001_scanned.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/imgs/invoice_001_scanned.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/imgs/invoice_002_scanned.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 83,
+                    "comment": 0,
+                    "filename": "static/panel.tpl"
+                },
+                {
+                    "filename": "static/preprocessed/invoice_001_scanned.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/24-18.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 98,
+                    "comment": 1,
+                    "filename": "static/submission/computer_parts.pdf"
+                },
+                {
+                    "filename": "static/submission/form.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/Inv.pdf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 103,
+                    "comment": 1,
+                    "filename": "static/submission/inv1.pdf"
+                },
+                {
+                    "filename": "static/submission/inv3.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/inv4.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/inv5.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 198,
+                    "comment": 3,
+                    "filename": "static/submission/inv6000.pdf"
+                },
+                {
+                    "filename": "static/submission/inv7.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/inv9.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/Invoice.pdf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/invoice_001_scanned.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/page.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/photo_2019-03-02_23-02-11.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/photo_2019-03-02_23-12-33.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/photo_2019-03-03_04-37-29.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/submission/photo_2019-03-03_05-41-13.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 255,
+                    "comment": 0,
+                    "filename": "static/submission/sheet.PDF"
+                },
+                {
+                    "filename": "static/submission/text.pdf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/text_pdf/invoice_001_scanned.pdf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/text_pdf/invoice_002_scanned.pdf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/text_pdf/invoice_003_scanned.pdf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/24-18.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/Inv.pdf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 103,
+                    "comment": 1,
+                    "filename": "static/uploads/inv1.pdf"
+                },
+                {
+                    "filename": "static/uploads/Invoice.pdf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/invoice_001_scanned.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/invoice_002_scanned.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/invoice_003_scanned.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/invoice_code_scanned_process.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/None_scanned_process.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/out.pdf",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/page.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/photo_2019-03-02_23-12-33.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "static/uploads/photo_2019-03-03_04-37-29.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 22,
+                    "code": 141,
+                    "comment": 20,
+                    "filename": "templates/loc.html"
+                },
+                {
+                    "blank": 31,
+                    "code": 1564,
+                    "comment": 35,
+                    "filename": "templates/location.1.html"
+                },
+                {
+                    "blank": 26,
+                    "code": 132,
+                    "comment": 25,
+                    "filename": "templates/location.html"
+                },
+                {
+                    "blank": 4,
+                    "code": 104,
+                    "comment": 20,
+                    "filename": "templates/pages/app/404.html"
+                },
+                {
+                    "blank": 11,
+                    "code": 363,
+                    "comment": 46,
+                    "filename": "templates/pages/app/add_form_new.html"
+                },
+                {
+                    "blank": 11,
+                    "code": 207,
+                    "comment": 35,
+                    "filename": "templates/pages/app/create.html"
+                },
+                {
+                    "blank": 11,
+                    "code": 182,
+                    "comment": 24,
+                    "filename": "templates/pages/app/dashboard.html"
+                },
+                {
+                    "blank": 5,
+                    "code": 878,
+                    "comment": 48,
+                    "filename": "templates/pages/app/datatables.html"
+                },
+                {
+                    "blank": 38,
+                    "code": 541,
+                    "comment": 46,
+                    "filename": "templates/pages/app/edit_sections.html"
+                },
+                {
+                    "blank": 43,
+                    "code": 456,
+                    "comment": 51,
+                    "filename": "templates/pages/app/edit_submission.html"
+                },
+                {
+                    "blank": 10,
+                    "code": 177,
+                    "comment": 23,
+                    "filename": "templates/pages/app/issues.html"
+                },
+                {
+                    "blank": 24,
+                    "code": 445,
+                    "comment": 47,
+                    "filename": "templates/pages/app/katyani_edit.html"
+                },
+                {
+                    "blank": 11,
+                    "code": 142,
+                    "comment": 14,
+                    "filename": "templates/pages/app/login.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 177,
+                    "comment": 24,
+                    "filename": "templates/pages/app/map.html"
+                },
+                {
+                    "blank": 9,
+                    "code": 493,
+                    "comment": 48,
+                    "filename": "templates/pages/app/new_form.html"
+                },
+                {
+                    "blank": 11,
+                    "code": 168,
+                    "comment": 14,
+                    "filename": "templates/pages/app/register.html"
+                },
+                {
+                    "blank": 11,
+                    "code": 204,
+                    "comment": 35,
+                    "filename": "templates/pages/app/result.html"
+                },
+                {
+                    "blank": 12,
+                    "code": 185,
+                    "comment": 24,
+                    "filename": "templates/pages/app/single_issue.html"
+                },
+                {
+                    "blank": 11,
+                    "code": 288,
+                    "comment": 43,
+                    "filename": "templates/pages/app/sortable.html"
+                },
+                {
+                    "blank": 9,
+                    "code": 291,
+                    "comment": 43,
+                    "filename": "templates/pages/app/submissions.html"
+                },
+                {
+                    "blank": 8,
+                    "code": 356,
+                    "comment": 46,
+                    "filename": "templates/pages/app/submit.html"
+                },
+                {
+                    "blank": 9,
+                    "code": 345,
+                    "comment": 61,
+                    "filename": "templates/pages/app/view_forms.html"
+                }
+            ]
+        }
+    ]
+}

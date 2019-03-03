@@ -1,0 +1,261 @@
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2019-03-03 09:11:50
+count workspace : /home/aniruddh/PycharmProjects/sih_2019
+total files : 249
+total code lines : 52060
+total comment lines : 4279
+total blank lines : 9265
+
+__pycache__/processor.cpython-36.pyc, it is a binary file.
+processor.py, code is 128, comment is 39, blank is 42.
+pyimagesearch/__init__.py, code is 0, comment is 0, blank is 0.
+pyimagesearch/__init__.pyc, it is a binary file.
+pyimagesearch/__pycache__/__init__.cpython-36.pyc, it is a binary file.
+pyimagesearch/__pycache__/imutils.cpython-36.pyc, it is a binary file.
+pyimagesearch/__pycache__/transform.cpython-36.pyc, it is a binary file.
+pyimagesearch/imutils.py, code is 26, comment is 20, blank is 12.
+pyimagesearch/imutils.pyc, it is a binary file.
+pyimagesearch/transform.py, code is 28, comment is 26, blank is 10.
+pyimagesearch/transform.pyc, it is a binary file.
+run_server.py, code is 542, comment is 53, blank is 196.
+static/assets/css/argon.mine209.css, code is 19161, comment is 20, blank is 4431.
+static/assets/css/border-anim-h.gif, it is a binary file.
+static/assets/css/border-anim-v.gif, it is a binary file.
+static/assets/css/border-h.gif, it is a binary file.
+static/assets/css/border-v.gif, it is a binary file.
+static/assets/css/imgareaselect-animated.css, code is 30, comment is 3, blank is 8.
+static/assets/css/imgareaselect-default.css, code is 30, comment is 3, blank is 8.
+static/assets/css/imgareaselect-deprecated.css, code is 27, comment is 3, blank is 6.
+static/assets/img/brand/blue.png, it is a binary file.
+static/assets/img/brand/favicon.png, it is a binary file.
+static/assets/img/brand/white.png, it is a binary file.
+static/assets/img/calendar/april.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/august.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/december.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/february.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/january.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/july.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/june.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/march.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/may.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/november.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/october.html, code is 73, comment is 0, blank is 15.
+static/assets/img/calendar/september.html, code is 73, comment is 0, blank is 15.
+static/assets/img/docs/getting-started/overview.svg, code is 1, comment is 0, blank is 0.
+static/assets/img/icons/cards/bitcoin.png, it is a binary file.
+static/assets/img/icons/cards/mastercard.png, it is a binary file.
+static/assets/img/icons/cards/paypal.png, it is a binary file.
+static/assets/img/icons/cards/visa.png, it is a binary file.
+static/assets/img/icons/common/github.svg, code is 12, comment is 1, blank is 0.
+static/assets/img/icons/common/google.svg, code is 17, comment is 1, blank is 0.
+static/assets/img/icons/flags/DE.png, it is a binary file.
+static/assets/img/icons/flags/FR.png, it is a binary file.
+static/assets/img/icons/flags/GB.png, it is a binary file.
+static/assets/img/icons/flags/US.png, it is a binary file.
+static/assets/img/theme/angular.jpg, it is a binary file.
+static/assets/img/theme/bootstrap.jpg, it is a binary file.
+static/assets/img/theme/img-1-1000x600.jpg, it is a binary file.
+static/assets/img/theme/img-1-1000x900.jpg, it is a binary file.
+static/assets/img/theme/img-1-1200x1000.jpg, it is a binary file.
+static/assets/img/theme/img-2-1200x1000.jpg, it is a binary file.
+static/assets/img/theme/landing-1.png, it is a binary file.
+static/assets/img/theme/landing-2.png, it is a binary file.
+static/assets/img/theme/landing-3.png, it is a binary file.
+static/assets/img/theme/profile-cover.jpg, it is a binary file.
+static/assets/img/theme/react.jpg, it is a binary file.
+static/assets/img/theme/sketch.jpg, it is a binary file.
+static/assets/img/theme/team-1.jpg, it is a binary file.
+static/assets/img/theme/team-1.png, it is a binary file.
+static/assets/img/theme/team-2.jpg, it is a binary file.
+static/assets/img/theme/team-3.jpg, it is a binary file.
+static/assets/img/theme/team-4.jpg, it is a binary file.
+static/assets/img/theme/team-5.jpg, it is a binary file.
+static/assets/img/theme/vue.jpg, it is a binary file.
+static/assets/js/app/location.js, code is 19, comment is 0, blank is 2.
+static/assets/js/argon.mine209.js, code is 1, comment is 16, blank is 0.
+static/assets/js/demo.min.js, code is 1, comment is 0, blank is 0.
+static/assets/js/jquery.connections.js, code is 238, comment is 0, blank is 12.
+static/assets/js/jquery.imgareaselect.js, code is 538, comment is 12, blank is 180.
+static/assets/js/jquery.imgareaselect.min.js, code is 1, comment is 0, blank is 0.
+static/assets/js/jquery.imgareaselect.pack.js, code is 1, comment is 0, blank is 0.
+static/assets/js/jquery.min.js, code is 3, comment is 3, blank is 0.
+static/assets/js/Location.js, code is 286, comment is 12, blank is 55.
+static/assets/js/Site.js, code is 345, comment is 15, blank is 45.
+static/assets/js/vendor/jvectormap/jquery-jvectormap-world-mill.js, code is 1, comment is 0, blank is 0.
+static/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css, code is 1, comment is 4, blank is 0.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg, code is 1184, comment is 0, blank is 0.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-brands-400d41d.eot, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg, code is 467, comment is 0, blank is 0.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-regular-400d41d.eot, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg, code is 2618, comment is 0, blank is 0.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2, it is a binary file.
+static/assets/vendor/@fortawesome/fontawesome-free/webfonts/fa-solid-900d41d.eot, it is a binary file.
+static/assets/vendor/anchor-js/anchor.min.js, code is 1, comment is 5, blank is 0.
+static/assets/vendor/animate.css/animate.min.css, code is 2, comment is 7, blank is 2.
+static/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js, code is 2, comment is 5, blank is 1.
+static/assets/vendor/bootstrap-notify/bootstrap-notify.min.js, code is 1, comment is 0, blank is 0.
+static/assets/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js, code is 1, comment is 5, blank is 1.
+static/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js, code is 1, comment is 6, blank is 0.
+static/assets/vendor/chart.js/dist/Chart.extension.js, code is 93, comment is 20, blank is 17.
+static/assets/vendor/chart.js/dist/Chart.min.js, code is 1, comment is 9, blank is 0.
+static/assets/vendor/clipboard/dist/clipboard.min.js, code is 1, comment is 6, blank is 0.
+static/assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css, code is 1, comment is 0, blank is 0.
+static/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js, code is 4, comment is 4, blank is 0.
+static/assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css, code is 1, comment is 0, blank is 0.
+static/assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js, code is 2, comment is 4, blank is 0.
+static/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js, code is 32, comment is 0, blank is 0.
+static/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js, code is 28, comment is 0, blank is 0.
+static/assets/vendor/datatables.net-buttons/js/buttons.print.min.js, code is 5, comment is 0, blank is 0.
+static/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js, code is 37, comment is 4, blank is 0.
+static/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css, code is 1, comment is 0, blank is 0.
+static/assets/vendor/datatables.net-select/js/dataTables.select.min.js, code is 23, comment is 4, blank is 0.
+static/assets/vendor/datatables.net/js/jquery.dataTables.min.js, code is 59, comment is 5, blank is 0.
+static/assets/vendor/dropzone/dist/min/dropzone.min.js, code is 2, comment is 0, blank is 0.
+static/assets/vendor/fullcalendar/dist/fullcalendar.min.css, code is 1, comment is 5, blank is 0.
+static/assets/vendor/fullcalendar/dist/fullcalendar.min.js, code is 1, comment is 5, blank is 0.
+static/assets/vendor/holderjs/holder.min.js, code is 1, comment is 11, blank is 0.
+static/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js, code is 1, comment is 8, blank is 0.
+static/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js, code is 1, comment is 15, blank is 0.
+static/assets/vendor/jquery/dist/jquery.min.js, code is 1, comment is 2, blank is 0.
+static/assets/vendor/js-cookie/js.cookie.js, code is 127, comment is 13, blank is 25.
+static/assets/vendor/jvectormap-next/jquery-jvectormap.min.js, code is 2, comment is 0, blank is 0.
+static/assets/vendor/lavalamp/js/jquery.lavalamp.min.js, code is 1, comment is 17, blank is 2.
+static/assets/vendor/list.js/dist/list.min.js, code is 1, comment is 1, blank is 0.
+static/assets/vendor/mapbox-js/icons-000000@2x.png, it is a binary file.
+static/assets/vendor/mapbox-js/icons-ffffff.svg, code is 35, comment is 0, blank is 0.
+static/assets/vendor/mapbox-js/icons-ffffff@2x.png, it is a binary file.
+static/assets/vendor/mapbox-js/icons.svg, code is 35, comment is 0, blank is 0.
+static/assets/vendor/mapbox-js/layers-2x.png, it is a binary file.
+static/assets/vendor/mapbox-js/layers.png, it is a binary file.
+static/assets/vendor/mapbox-js/leaflet.markercluster-src.js, code is 1777, comment is 398, blank is 475.
+static/assets/vendor/mapbox-js/leaflet.markercluster-src.js.map, code is 1, comment is 0, blank is 0.
+static/assets/vendor/mapbox-js/leaflet.markercluster.js, code is 2, comment is 1, blank is 0.
+static/assets/vendor/mapbox-js/leaflet.markercluster.js.map, code is 1, comment is 0, blank is 0.
+static/assets/vendor/mapbox-js/leaflet.markercluster_old.js, code is 1, comment is 5, blank is 0.
+static/assets/vendor/mapbox-js/mapbox.css, code is 883, comment is 45, blank is 200.
+static/assets/vendor/mapbox-js/mapbox.internals.js, code is 256, comment is 20, blank is 52.
+static/assets/vendor/mapbox-js/mapbox.js, code is 60, comment is 3, blank is 2.
+static/assets/vendor/mapbox-js/mapbox.min.css, code is 1, comment is 1, blank is 0.
+static/assets/vendor/mapbox-js/mapbox.standalone.js, code is 51, comment is 2, blank is 2.
+static/assets/vendor/mapbox-js/mapbox.standalone.uncompressed.js, code is 2710, comment is 281, blank is 432.
+static/assets/vendor/mapbox-js/mapbox.uncompressed.js, code is 6456, comment is 2134, blank is 1810.
+static/assets/vendor/mapbox-js/marker-icon-2x.png, it is a binary file.
+static/assets/vendor/mapbox-js/marker-icon.png, it is a binary file.
+static/assets/vendor/mapbox-js/marker-shadow.png, it is a binary file.
+static/assets/vendor/mapbox-js/MarkerCluster.css, code is 12, comment is 1, blank is 1.
+static/assets/vendor/mapbox-js/MarkerCluster.Default.css, code is 52, comment is 1, blank is 7.
+static/assets/vendor/mapbox-js/render.sh, code is 26, comment is 4, blank is 9.
+static/assets/vendor/mapbox-js/WhereAreTheJavascriptFiles.txt, code is 1, comment is 0, blank is 0.
+static/assets/vendor/moment/min/moment.min.js, code is 1, comment is 0, blank is 0.
+static/assets/vendor/nouislider/distribute/nouislider.min.js, code is 1, comment is 1, blank is 1.
+static/assets/vendor/nucleo/css/nucleo.css, code is 441, comment is 28, blank is 103.
+static/assets/vendor/nucleo/fonts/nucleo-icons.eot, it is a binary file.
+static/assets/vendor/nucleo/fonts/nucleo-icons.svg, code is 312, comment is 0, blank is 0.
+static/assets/vendor/nucleo/fonts/nucleo-icons.ttf, it is a binary file.
+static/assets/vendor/nucleo/fonts/nucleo-icons.woff, it is a binary file.
+static/assets/vendor/nucleo/fonts/nucleo-icons.woff2, it is a binary file.
+static/assets/vendor/onscreen/dist/on-screen.umd.min.js, code is 1, comment is 1, blank is 0.
+static/assets/vendor/prismjs/prism.js, code is 512, comment is 45, blank is 144.
+static/assets/vendor/quill/dist/quill.core.css, code is 391, comment is 6, blank is 0.
+static/assets/vendor/quill/dist/quill.min.js, code is 1, comment is 8, blank is 0.
+static/assets/vendor/select2/dist/css/select2.min.css, code is 1, comment is 0, blank is 0.
+static/assets/vendor/select2/dist/js/select2.min.js, code is 1, comment is 1, blank is 0.
+static/assets/vendor/slidepanel/jquery-slidePanel.es.js, code is 906, comment is 70, blank is 208.
+static/assets/vendor/slidepanel/jquery-slidePanel.js, code is 1241, comment is 44, blank is 197.
+static/assets/vendor/slidepanel/jquery-slidePanel.min.js, code is 1, comment is 8, blank is 0.
+static/assets/vendor/slidepanel/slidePanel.css, code is 157, comment is 0, blank is 33.
+static/assets/vendor/slidepanel/slidePanel.min.css, code is 1, comment is 0, blank is 0.
+static/assets/vendor/sweetalert2/dist/sweetalert2.min.css, code is 1, comment is 0, blank is 0.
+static/assets/vendor/sweetalert2/dist/sweetalert2.min.js, code is 1, comment is 1, blank is 0.
+static/csv/invoice_001_1.csv, code is 0, comment is 0, blank is 5.
+static/csv/invoice_001_10.csv, code is 5, comment is 0, blank is 0.
+static/csv/invoice_001_2.csv, code is 4, comment is 0, blank is 0.
+static/csv/invoice_001_3.csv, code is 4, comment is 0, blank is 0.
+static/csv/invoice_001_4.csv, code is 3, comment is 0, blank is 0.
+static/csv/invoice_001_5.csv, code is 0, comment is 0, blank is 1.
+static/csv/invoice_001_6.csv, code is 4, comment is 0, blank is 0.
+static/csv/invoice_002_2.csv, code is 0, comment is 0, blank is 6.
+static/csv/invoice_002_4.csv, code is 14, comment is 0, blank is 0.
+static/imgs/form.jpg, it is a binary file.
+static/imgs/inv3.jpg, it is a binary file.
+static/imgs/inv4.jpg, it is a binary file.
+static/imgs/inv5.jpg, it is a binary file.
+static/imgs/inv9.jpg, it is a binary file.
+static/imgs/invoice_001_scanned.jpg, it is a binary file.
+static/imgs/invoice_001_scanned.png, it is a binary file.
+static/imgs/invoice_002_scanned.png, it is a binary file.
+static/panel.tpl, code is 83, comment is 0, blank is 0.
+static/preprocessed/invoice_001_scanned.jpg, it is a binary file.
+static/submission/24-18.png, it is a binary file.
+static/submission/computer_parts.pdf, code is 98, comment is 1, blank is 0.
+static/submission/form.jpg, it is a binary file.
+static/submission/Inv.pdf, it is a binary file.
+static/submission/inv1.pdf, code is 103, comment is 1, blank is 0.
+static/submission/inv3.jpg, it is a binary file.
+static/submission/inv4.jpg, it is a binary file.
+static/submission/inv5.jpg, it is a binary file.
+static/submission/inv6000.pdf, code is 198, comment is 3, blank is 0.
+static/submission/inv7.jpg, it is a binary file.
+static/submission/inv9.jpg, it is a binary file.
+static/submission/Invoice.pdf, it is a binary file.
+static/submission/invoice_001_scanned.jpg, it is a binary file.
+static/submission/page.jpg, it is a binary file.
+static/submission/photo_2019-03-02_23-02-11.jpg, it is a binary file.
+static/submission/photo_2019-03-02_23-12-33.jpg, it is a binary file.
+static/submission/photo_2019-03-03_04-37-29.jpg, it is a binary file.
+static/submission/photo_2019-03-03_05-41-13.jpg, it is a binary file.
+static/submission/sheet.PDF, code is 255, comment is 0, blank is 0.
+static/submission/text.pdf, it is a binary file.
+static/text_pdf/invoice_001_scanned.pdf, it is a binary file.
+static/text_pdf/invoice_002_scanned.pdf, it is a binary file.
+static/text_pdf/invoice_003_scanned.pdf, it is a binary file.
+static/uploads/24-18.png, it is a binary file.
+static/uploads/Inv.pdf, it is a binary file.
+static/uploads/inv1.pdf, code is 103, comment is 1, blank is 0.
+static/uploads/Invoice.pdf, it is a binary file.
+static/uploads/invoice_001_scanned.jpg, it is a binary file.
+static/uploads/invoice_002_scanned.jpg, it is a binary file.
+static/uploads/invoice_003_scanned.jpg, it is a binary file.
+static/uploads/invoice_code_scanned_process.jpg, it is a binary file.
+static/uploads/None_scanned_process.jpg, it is a binary file.
+static/uploads/out.pdf, it is a binary file.
+static/uploads/page.jpg, it is a binary file.
+static/uploads/photo_2019-03-02_23-12-33.jpg, it is a binary file.
+static/uploads/photo_2019-03-03_04-37-29.jpg, it is a binary file.
+templates/loc.html, code is 141, comment is 20, blank is 22.
+templates/location.1.html, code is 1564, comment is 35, blank is 31.
+templates/location.html, code is 132, comment is 25, blank is 26.
+templates/pages/app/404.html, code is 104, comment is 20, blank is 4.
+templates/pages/app/add_form_new.html, code is 363, comment is 46, blank is 11.
+templates/pages/app/create.html, code is 207, comment is 35, blank is 11.
+templates/pages/app/dashboard.html, code is 182, comment is 24, blank is 11.
+templates/pages/app/datatables.html, code is 878, comment is 48, blank is 5.
+templates/pages/app/edit_sections.html, code is 541, comment is 46, blank is 38.
+templates/pages/app/edit_submission.html, code is 456, comment is 51, blank is 43.
+templates/pages/app/issues.html, code is 177, comment is 23, blank is 10.
+templates/pages/app/katyani_edit.html, code is 445, comment is 47, blank is 24.
+templates/pages/app/login.html, code is 142, comment is 14, blank is 11.
+templates/pages/app/map.html, code is 177, comment is 24, blank is 15.
+templates/pages/app/new_form.html, code is 493, comment is 48, blank is 9.
+templates/pages/app/register.html, code is 168, comment is 14, blank is 11.
+templates/pages/app/result.html, code is 204, comment is 35, blank is 11.
+templates/pages/app/single_issue.html, code is 185, comment is 24, blank is 12.
+templates/pages/app/sortable.html, code is 288, comment is 43, blank is 11.
+templates/pages/app/submissions.html, code is 291, comment is 43, blank is 9.
+templates/pages/app/submit.html, code is 356, comment is 46, blank is 8.
+templates/pages/app/view_forms.html, code is 345, comment is 61, blank is 9.
+===============================================================================

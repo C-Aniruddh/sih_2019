@@ -5,6 +5,7 @@ import numpy as np
 import cv2
 import os
 import camelot
+import random
 
 import math
 import subprocess
@@ -83,9 +84,9 @@ class Processor:
         print("SAVE CROP")
 
         APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-        UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/uploads')
+        UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/submission')
         filename = '%s_scanned.jpg' % form_name
-        final_filename = '%s/%s_scanned.jpg' % (UPLOAD_FOLDER, form_name)
+        final_filename = '%s/%s_%s_scanned.jpg' % (UPLOAD_FOLDER, random.randint(3000, 4000), form_name)
         cv2.imwrite(final_filename, crop_img)
 
         print("Done")
@@ -114,7 +115,7 @@ class Processor:
         print("In here")
         flag_invoice_file = '-%s' % (invoice_filename)
         APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-        UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/uploads')
+        UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/submission')
         final_filename = '%s/%s_scanned.png' % (UPLOAD_FOLDER, form_name)
         args = ['convert', '-verbose', '-density 150', '-trim', flag_invoice_file, '-quality 100', '-flatten', '-sharpen 0x1.0', final_filename]
         convert_to_image = subprocess.call(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=3600)
@@ -130,8 +131,8 @@ class Processor:
     def pdf2img(self, form_name, invoice_file):
         flag_invoice_file = '-%s' % (invoice_file)
         APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-        UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/imgs')
-        final_filename = '%s/%s_scanned.png' % (UPLOAD_FOLDER, form_name)
+        UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/submission')
+        final_filename = '%s/%s_%s_scanned.png' % (UPLOAD_FOLDER, random.randint(4000, 5000), form_name)
         command = 'magick convert -verbose -trim %s -quality 100 -flatten -sharpen 0x1.0 %s' %(invoice_file, final_filename)
         # args = ['magick', 'convert', '-verbose', '-trim', invoice_file, '-quality 100', '-flatten', '-sharpen 0x1.0', final_filename]
         # convert_to_image = subprocess.check_output(args)
@@ -206,4 +207,16 @@ class Processor:
         out_csv = "%s/%s.csv" % (TEXT_CSV, fname)
         tables[0].to_csv(out_csv)
         return tables, out_csv
+
+    def get_table_details_batch(self, form_name, invoice_file, sub_id):
+        tables = camelot.read_pdf(invoice_file)
+        # tables.export('auto.csv', f='csv', compress=True) # json, excel, html
+        print(tables[0].parsing_report)
+        tables[0].df
+        APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+        TEXT_CSV = os.path.join(APP_ROOT, 'static/csv')
+        fname = '%s_%s' % (form_name, sub_id)
+        out_csv = "%s/%s.csv" % (TEXT_CSV, fname)
+        tables[0].to_csv(out_csv)
+        return tables, out_csv, tables[0].parsing_report
    
