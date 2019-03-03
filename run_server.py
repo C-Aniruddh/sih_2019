@@ -9,6 +9,7 @@ import timeago
 from bson.json_util import dumps
 from google.protobuf.json_format import MessageToJson
 
+import numpy as np
 import pandas as pd
 
 from processor import Processor
@@ -19,12 +20,15 @@ import json
 from werkzeug.utils import secure_filename
 import shutil
 
+import cv2
+
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 DOWNLOAD_FOLDER = os.path.join(APP_ROOT, 'static/downloads')
 UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/uploads')
 PROCESSED_FOLDER = os.path.join(APP_ROOT, 'static/processed')
 SUBMISSION_FOLDER = os.path.join(APP_ROOT, 'static/submission')
+IMGS_FOLDER = os.path.join(APP_ROOT, 'static/imgs')
 
 app.config['MONGO_DBNAME'] = 'sih'
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/sih'
@@ -32,6 +36,7 @@ app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['PROCESSED_FOLDER'] = PROCESSED_FOLDER
 app.config['SUBMISSION_FOLDER'] = SUBMISSION_FOLDER
+app.config['IMGS_FOLDER'] = IMGS_FOLDER
 
 app.secret_key = 'mysecret'
 
@@ -50,12 +55,63 @@ def index():
         users = mongo.db.users
         current_user = users.find_one({'name' : session['username']})
         user_fullname = current_user['fullname'] 
-        return render_template('pages/app/dashboard.html', user_fullname=user_fullname)
+        total_users_find = users.find({})
+        total_users_count = total_users_find.count()
+
+        submissions = mongo.db.submissions
+
+        all_submissions = submissions.find({})
+        all_submissions_count = all_submissions.count()
+
+        invoices = mongo.db.invoices
+        all_invoices = invoices.find({})
+        all_invoices_count = all_invoices.count()
+
+        suggested_sections = mongo.db.suggested_sections
+        all_suggested_sections = suggested_sections.find({})
+        all_suggseted_sections_count = all_suggested_sections.count()
+
+        return render_template('pages/app/dashboard.html', user_fullname=user_fullname, total_users=total_users_count, total_invoices=all_submissions_count, total_inv = all_invoices_count, total_sections=all_suggseted_sections_count)
     else:
         return redirect('/userlogin')
 
 
+@app.route('/app/view_forms')
+def view_all_forms():
+    invoices = mongo.db.invoices
+    all_invs = invoices.find({})
+    invoices_l = []
+    for inv in all_invs:
+        code = inv['invoice_code']
+        desc = inv['description']
+        img = inv['static_url']
+        invoice = {'code' : code, 'description' : desc, 'image' : img}
+        invoices_l.append(invoice)
 
+    print(invoices_l)
+    return render_template('pages/app/view_forms.html', invoices=invoices_l)
+
+
+@app.route('/app/edit_submission/<submission_id>')
+def edit_submission(submission_id):
+    submissions = mongo.db.submissions
+
+    find_current_sub = submissions.find_one({'submission_id' : submission_id})
+    current_w = find_current_sub['w']
+    current_h = find_current_sub['h']
+
+    current_image_full = find_current_sub['file']
+    image_name = current_image_full.split('/')[-1]
+
+
+    keys = list(find_current_sub['keys'])
+    values = list(find_current_sub['values'])
+    coordinates = list(find_current_sub['coordinates'])
+
+    sectionlist = range(0, len(keys))
+
+    return render_template('pages/app/edit_submission.html', sectionlist=sectionlist, keys=keys, values=values, coordinates=coordinates, current_h=current_h,
+        current_w=current_w, current_image=image_name)
 @app.route('/app/add_form', methods = ['POST', 'GET'])
 def add_form():
     if 'username' in session:
@@ -142,10 +198,15 @@ def submissions():
         find_all_invoices = invoices.find({})
 
         submissions = mongo.db.submissions
+        tables = mongo.db.tables
 
         all_submissions = submissions.find({})
         all_submissions_count = all_submissions.count()
 
+        all_tables = tables.find({})
+        all_tables_count = all_tables.count()
+
+        table_id = str(all_tables_count + 1)
         submission_id = str(all_submissions_count + 1)
         inv = []
         for invoice in find_all_invoices:
@@ -178,9 +239,8 @@ def submissions():
                 else:
                     text_pdf = full_path_invoice
                 
-                tables, proc_file = proc.get_table_details(invoice_code, text_pdf, submission_id)
-                num_tables = len(tables)
-
+                tabs, proc_file = proc.get_table_details(invoice_code, text_pdf, submission_id)
+                
                 # dfs = []
                 # for table in tables:
                 #     dfs.append(table.df)
@@ -194,7 +254,12 @@ def submissions():
                 data = pd.read_csv(proc_file)
                 print(data) 
                 d = data.to_dict('records')
+                cols = list(data)
+                print(list(data))
                 print(d)
+
+                #tables.insert({'table_id' : table_id, 'invoice_code' : invoice_code, 'cols' : data, 'dicts' : d, 'submission_id' : submission_id})
+                tables.insert({'table_id' : table_id, 'invoice_code' : invoice_code, 'cols' : cols, 'data' : proc_file, 'submission_id' : submission_id})
 
         return render_template('pages/app/submit.html', user_fullname=user_fullname, invoices=inv)
 
@@ -208,15 +273,52 @@ def view_forms():
         
         subs = []
         for sub in find_submissions:
-            title = sub['invoice_code']
+            title = sub['title']
             form_code = sub['invoice_code']
             timestamp = sub['timestamp']
             uploaded_by = sub['uploaded_by']
-            sub = {'title' : title, 'form_code' : form_code, 'timestamp' : timestamp, 'uploaded_by' : uploaded_by}
+            subid = sub['submission_id']
+            sub = {'title' : title, 'form_code' : form_code, 'timestamp' : timestamp, 'uploaded_by' : uploaded_by, 'id' : subid}
             subs.append(sub)
             
         return render_template('pages/app/sortable.html', subs=subs)
 
+
+@app.route('/app/submission/<submission_id>')
+def view_submission(submission_id):
+    tables = mongo.db.tables
+    submissions = mongo.db.submissions
+
+    find_submission = submissions.find_one({'submission_id' : submission_id})
+
+    keys = list(find_submission['keys'])
+    values = list(find_submission['values'])
+
+    new_values = []
+    for value in values:
+        spl = value.splitlines()
+        new_val = '<br/>'.join(spl)
+        new_values.append(new_val)
+
+    paramlist = range(0, len(keys))
+
+    find_table = tables.find_one({'submission_id' : submission_id})
+    table_dat = find_table['data']
+    cols = list(find_table['cols'])
+
+    col_list = range(0, len(cols))
+
+    data = pd.read_csv(table_dat)
+    df1 = data.replace(np.nan, '', regex=True)
+    d = df1.to_dict('records')
+    
+    for a in d:
+        print(a)
+    
+    li = df1.values.tolist()
+    print(li)
+
+    return render_template('pages/app/result.html', paramlist=paramlist, keys=keys, values=new_values, col_list=col_list, cols=cols, li=li, submission_id=submission_id)
 
 # Login and register 
 @app.route('/register', methods=['POST', 'GET'])
@@ -273,6 +375,10 @@ def logout():
 @app.route('/downloads/<filename>')
 def downloads(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+@app.route('/static/<filename>')
+def static_img(filename):
+    return send_from_directory(app.config['IMGS_FOLDER'], filename)
 
 
 @app.route('/cdn/pointcloud/<filename>')
@@ -359,6 +465,8 @@ def extract_text(path, form_code, submission_id):
     keys = []
     values = []
     bb_coor = []
+
+
     for page in response.full_text_annotation.pages:
         for block in page.blocks:
             # print('\nBlock BB : {}\n'.format(block.bounding_box))
@@ -415,11 +523,15 @@ def extract_text(path, form_code, submission_id):
                     values.append(block_sentence)
                 bb_coor.append(bb_coordinates)
 
-
+    image = cv2.imread(path)
+    w = image.shape[0]
+    h = image.shape[1]
 
     ts = time.time()
     timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-    submissions.insert({'submission_id': submission_id, 'invoice_code' : form_code,'coordinates' : bb_coor, 'keys' : keys, 'values' : values, 'timestamp' : timestamp, 'uploaded_by' : session['username']})
+
+    title = '%s - %s' % (form_code, timestamp)
+    submissions.insert({'submission_id': submission_id, 'w' : w, 'h' : h, 'file' : path, 'invoice_code' : form_code, 'title' : title, 'coordinates' : bb_coor, 'keys' : keys, 'values' : values, 'timestamp' : timestamp, 'uploaded_by' : session['username']})
 
     return section_bb, section_titles
 

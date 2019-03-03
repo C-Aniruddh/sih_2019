@@ -100,7 +100,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <span class="nav-link-text">View Submissions</span>
                       </a>
                     </li>
-
                     <li class="nav-item">
                             <a class="nav-link" href="/app/view_forms">
                               <i class="ni ni-bullet-list-67 text-indigo"></i>
@@ -424,44 +423,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
         <!-- Page content -->
         <div class="container-fluid mt--6">
-            <div class="card col-6">
-                <!-- Card header -->
-                <div class="card-header">
-                    <h3 class="mb-0">Create New Form</h3>
-                </div>
-                <!-- Card body -->
-                <div class="card-body">
-                    <!-- Form groups used in grid -->
-                    <form method=POST action="{{ url_for('add_form') }}" role="form" enctype="multipart/form-data">
+                {% for invoice in invoices %}
+                <div class="col-4">
+                <!--<div class="card">
+                        
+                        <div class="card-header">
+                          <div class="row align-items-center">
+                            <div class="col-8">
+                              <h5 class="h3 mb-0">{{invoice['code']}}</h5>
+                            </div>
+                            <div class="col-4 text-right">
+                              <a href="/app/edit_section/{{invoice['code']}}" class="btn btn-sm btn-neutral">Edit sections</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <p class="card-text mb-4">{{invoice['description']}}</p>
+                          <a href="/app/submissions" class="btn btn-primary">Update new form</a>
+                        </div>
+                      </div>-->
 
-                        <div class="form-group">
-                            <label class="form-control-label" for="form_code">Invoice Code</label>
-                            <input type="text" class="form-control" id="invoice_code" name="invoice_code" , placeholder="invoice_007">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-control-label" for="exampleFormControlTextarea1">Description</label>
-                            <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" name="invoice_file" id="image_file"
-                                placeholder="Upload File">
-                            <label class="custom-file-label" for="customFileLang">Invoice Image / PDF</label>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-control-label" for="p_cat">Preprocess</label>
-                            <select name="invoice_process" id="p_cat" class="form-control" data-toggle="select">
-                                <option>Select Yes or No</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </div>
-                        <button class="btn btn-primary" type="submit">Create</button>
-                    </form>
-                    <!-- Footer -->
-
-                </div>
-            </div>
+                      <div class="card">
+                           
+                            <!-- Card image -->
+                            <img class="card-img-top" height="600" src="{{invoice['image']}}" alt="Image placeholder">
+                            <!-- Card body -->
+                            <div class="card-body">
+                              <h5 class="h2 card-title mb-0">{{invoice['code']}}</h5>
+                              <p class="card-text mt-4">{{invoice['description']}}</p>
+                              <a href="/app/submissions" class="btn btn-link px-0">New submission</a>
+                              <a href="/app/edit_sections/{{invoice['code']}}" class="btn btn-link px-0">Edit sections</a>
+                            </div>
+                          </div>
+                    </div>
+                    {% endfor %}
             <!-- Argon Scripts -->
             <!-- Core -->
             <script src="{{ url_for('static', filename='assets')}}/vendor/jquery/dist/jquery.min.js"></script>
