@@ -277,7 +277,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
             <div class="col-lg-6 col-5 text-right">
                 <a href="/app/edit_submission/{{submission_id}}" class="btn btn-sm btn-neutral">Visualize</a>
-                <a href="/app/download_csv" class="btn btn-sm btn-neutral">Download CSV</a>
+                <a href="/app/download_csv/{{submission_id}}" class="btn btn-sm btn-neutral">Download CSV</a>
+                <a href="/app/download_json/{{submission_id}}" class="btn btn-sm btn-neutral">Download JSON</a>
             </div>
           </div>
         </div>
@@ -315,8 +316,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
           </div>
 
-          <div class="card">
-            <!-- Card header -->
+          <!-- <div class="card">
             <div class="card-header">
               <h3 class="mb-0">Tables Extracted</h3>
             </div>
@@ -340,36 +340,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </tbody>
               </table>
             </div>
+          </div>-->
+          <div class="card">
+              <!-- Card header -->
+
+              <!-- Light table -->
+              <div class="table-responsive" data-toggle="list" data-list-values='[{% for x in col_list %} "{{cols[x]}}",  {% endfor %} ""]'>
+                  <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                          <tr>
+                              {% for x in col_list %}
+                              <th scope="col" class="sort" data-sort="{{cols[x]}}">{{cols[x]}}</th>
+                              {% endfor %}
+                          </tr>
+                      </thead>
+                      <tbody class="list">
+                          {% for row in li %}
+                          <tr>
+                              {% for x in col_list %}
+                              <td class="{{cols[x]}}">
+                                  {{row[x]}}
+                              </td>
+                              {% endfor %}
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+              <!-- Card footer -->
+              
           </div>
         </div>
       </div>
       <!-- Footer -->
-      <footer class="footer pt-0">
-        <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6">
-            <div class="copyright text-center text-lg-left text-muted">
-              &copy; 2018 <a href="https://www.creative-tim.com/" class="font-weight-bold ml-1" target="_blank">Creative
-                Tim</a>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com/" class="nav-link" target="_blank">Creative Tim</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a href="http://blog.creative-tim.com/" class="nav-link" target="_blank">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a href="https://www.creative-tim.com/license" class="nav-link" target="_blank">License</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      
     </div>
   </div>
   <!-- Argon Scripts -->

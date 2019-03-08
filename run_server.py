@@ -32,6 +32,7 @@ UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/uploads')
 PROCESSED_FOLDER = os.path.join(APP_ROOT, 'static/processed')
 SUBMISSION_FOLDER = os.path.join(APP_ROOT, 'static/submission')
 IMGS_FOLDER = os.path.join(APP_ROOT, 'static/submission')
+CSV_FOLDER = os.path.join(APP_ROOT, 'static/csv')
 
 app.config['MONGO_DBNAME'] = 'sih'
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/sih'
@@ -40,6 +41,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['PROCESSED_FOLDER'] = PROCESSED_FOLDER
 app.config['SUBMISSION_FOLDER'] = SUBMISSION_FOLDER
 app.config['IMGS_FOLDER'] = IMGS_FOLDER
+app.config['CSV_FOLDER'] = CSV_FOLDER
 
 app.secret_key = 'mysecret'
 
@@ -115,7 +117,6 @@ def edit_submission(submission_id):
 
     return render_template('pages/app/edit_submission.html', sectionlist=sectionlist, keys=keys, values=values, coordinates=coordinates, current_h=current_h,
         current_w=current_w, current_image=image_name)
-
 
 
 @app.route('/app/add_form', methods = ['POST', 'GET'])
@@ -454,6 +455,26 @@ def logout():
     return redirect('/')
 
 
+@app.route('/app/download_csv/<sub_id>')
+def download_csv(sub_id):
+    tables = mongo.db.tables
+    find_table = tables.find_one({'submission_id' : sub_id})
+    current_data = find_table['data']
+    data_split = current_data.split('/')
+    filename = data_split[-1]
+    redirect_to = '/csv/%s' % filename
+    return redirect(redirect_to)
+
+@app.route('/app/download_json/<sub_id>')
+def download_json(sub_id):
+    tables = mongo.db.tables
+    find_table = tables.find_one({'submission_id' : sub_id})
+    current_data = find_table['data']
+    data_split = current_data.split('/')
+    filename = data_split[-1]
+    json_f = filename.replace('csv', 'zip')
+    redirect_to = '/csv/%s' % json_f
+    return redirect(redirect_to)
 
 # Download management
 
@@ -464,6 +485,10 @@ def downloads(filename):
 @app.route('/static/<filename>')
 def static_img(filename):
     return send_from_directory(app.config['IMGS_FOLDER'], filename)
+
+@app.route('/csv/<filename>')
+def static_csv(filename):
+    return send_from_directory(app.config['CSV_FOLDER'], filename)
 
 
 @app.route('/cdn/pointcloud/<filename>')
@@ -511,8 +536,8 @@ def mobile_submissions():
             invoice_file.save(os.path.join(app.config['SUBMISSION_FOLDER'], invoice_filename))  
             full_path_invoice = os.path.join(app.config['SUBMISSION_FOLDER'], invoice_filename)
 
-            invoice_code = request.form.get('invoice_code')
-
+            #invoice_code = request.form.get('invoice_code')
+            invoice_code = "invoice_mobile"
             invoice_extension = full_path_invoice.split('.')[-1]
 
             if invoice_extension == 'jpg' or invoice_extension == 'JPG' or invoice_extension == 'png' or invoice_extension == 'PNG':
@@ -550,7 +575,9 @@ def mobile_submissions():
 
             #tables.insert({'table_id' : table_id, 'invoice_code' : invoice_code, 'cols' : data, 'dicts' : d, 'submission_id' : submission_id})
             tables.insert({'table_id' : table_id, 'invoice_code' : invoice_code, 'cols' : cols, 'data' : proc_file, 'submission_id' : submission_id})
-
+            return render_template('done')
+    else:
+        return render_template('pages/app/submit_mobile.html')
     return json.dumps({'upload' : 'sucesss'})
 
 

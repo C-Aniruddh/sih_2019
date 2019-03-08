@@ -45,6 +45,7 @@ class Processor:
             approx = cv2.approxPolyDP(c, 0.02 * peri, True)
             # if our approximated contour has four points, then we
             # can assume that we have found our screen
+            print(len(approx))
             if len(approx) == 4:
                 screenCnt = approx
                 break
@@ -184,8 +185,10 @@ class Processor:
         # processed_file = self.preprocess(invoice_file, form_name)
 
         # comm1 = 'convert %s -quality 100 %s' % (processed_file, tmp_filename)
+        # comm1 = "convert -geometry 1600x1600 -density 200x200 -quality 100 %s %s" % (invoice_file, tmp_filename)
+        # comm1 = "img2pdf %s -o %s" % (invoice_file, tmp_filename)
         # os.system(comm1)
-        command = 'ocrmypdf --jobs 4 -l eng --deskew --oversample 300 --image-dpi 72 %s %s' %(invoice_file, final_filename)
+        command = 'ocrmypdf --jobs 4 -l eng --deskew --oversample 600 --image-dpi 300 %s %s' %(invoice_file, final_filename)
         # subprocess.Popen(command)
         os.system(command)
         #args = ['ocrmypdf', '--jobs 4', '--deskew', '--image-dpi 72' , inv_file, out_file]
@@ -197,14 +200,16 @@ class Processor:
         return filename, final_filename
 
     def get_table_details(self, form_name, invoice_file, sub_id):
-        tables = camelot.read_pdf(invoice_file)
-        # tables.export('auto.csv', f='csv', compress=True) # json, excel, html
+        tables = camelot.read_pdf(invoice_file, flavor='stream')
+        #tables.export('auto.csv', f='json', compress=True) # json, excel, html
         print(tables[0].parsing_report)
         tables[0].df
         APP_ROOT = os.path.dirname(os.path.abspath(__file__))
         TEXT_CSV = os.path.join(APP_ROOT, 'static/csv')
         fname = '%s_%s' % (form_name, sub_id)
         out_csv = "%s/%s.csv" % (TEXT_CSV, fname)
+        out_json = "%s/%s.json" % (TEXT_CSV, fname)
+        tables.export(out_json, f='json', compress=True) # json, excel, html
         tables[0].to_csv(out_csv)
         return tables, out_csv
 
