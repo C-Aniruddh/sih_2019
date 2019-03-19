@@ -134,7 +134,7 @@ class Processor:
         APP_ROOT = os.path.dirname(os.path.abspath(__file__))
         UPLOAD_FOLDER = os.path.join(APP_ROOT, 'static/submission')
         final_filename = '%s/%s_%s_scanned.png' % (UPLOAD_FOLDER, random.randint(4000, 5000), form_name)
-        command = 'magick convert -verbose -trim %s -quality 100 -flatten -sharpen 0x1.0 %s' %(invoice_file, final_filename)
+        command = 'magick convert -verbose -density 300 -trim %s -quality 100 -flatten -sharpen 0x1.0 %s' %(invoice_file, final_filename)
         # args = ['magick', 'convert', '-verbose', '-trim', invoice_file, '-quality 100', '-flatten', '-sharpen 0x1.0', final_filename]
         # convert_to_image = subprocess.check_output(args)
         os.system(command)
@@ -201,6 +201,7 @@ class Processor:
 
     def get_table_details(self, form_name, invoice_file, sub_id):
         tables = camelot.read_pdf(invoice_file, flavor='stream')
+        tables = camelot.read_pdf(invoice_file)
         #tables.export('auto.csv', f='json', compress=True) # json, excel, html
         print(tables[0].parsing_report)
         tables[0].df

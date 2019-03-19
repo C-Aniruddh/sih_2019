@@ -60,6 +60,7 @@ def index():
         users = mongo.db.users
         current_user = users.find_one({'name' : session['username']})
         user_fullname = current_user['fullname'] 
+        user_type = current_user['user_type']
         total_users_find = users.find({})
         total_users_count = total_users_find.count()
 
@@ -76,7 +77,21 @@ def index():
         all_suggested_sections = suggested_sections.find({})
         all_suggseted_sections_count = all_suggested_sections.count()
 
-        return render_template('pages/app/dashboard.html', user_fullname=user_fullname, total_users=total_users_count, total_invoices=all_submissions_count, total_inv = all_invoices_count, total_sections=all_suggseted_sections_count)
+        submissions = mongo.db.submissions
+        find_submissions = submissions.find({})
+        
+        subs = []
+        for sub in find_submissions:
+            title = sub['title']
+            form_code = sub['invoice_code']
+            timestamp = sub['timestamp']
+            uploaded_by = sub['uploaded_by']
+            subid = sub['submission_id']
+            sub = {'title' : title, 'form_code' : form_code, 'timestamp' : timestamp, 'uploaded_by' : uploaded_by, 'id' : subid}
+            subs.append(sub)
+
+        return render_template('app/dashboard.html', user_fullname=user_fullname, user_type=user_type, total_users=total_users_count, total_invoices=all_submissions_count, total_inv = all_invoices_count, total_sections=all_suggseted_sections_count,
+            subs=subs)
     else:
         return redirect('/userlogin')
 
@@ -102,6 +117,7 @@ def edit_submission(submission_id):
     submissions = mongo.db.submissions
 
     find_current_sub = submissions.find_one({'submission_id' : submission_id})
+    print(find_current_sub)
     current_w = find_current_sub['w']
     current_h = find_current_sub['h']
 
@@ -115,8 +131,8 @@ def edit_submission(submission_id):
 
     sectionlist = range(0, len(keys))
 
-    return render_template('pages/app/edit_submission.html', sectionlist=sectionlist, keys=keys, values=values, coordinates=coordinates, current_h=current_h,
-        current_w=current_w, current_image=image_name)
+    return render_template('app/apps_visualizer.html', sectionlist=sectionlist, keys=keys, values=values, coordinates=coordinates, current_h=current_h,
+        current_w=current_w, current_image=image_name, submission_id=submission_id)
 
 
 @app.route('/app/add_form', methods = ['POST', 'GET'])
@@ -163,7 +179,7 @@ def add_form():
                 
                 return redirect('/')
 
-        return render_template('pages/app/add_form_new.html', user_fullname=user_fullname)
+        return render_template('app/add_form.html', user_fullname=user_fullname)
     else:
         return redirect('/userlogin')
 
@@ -268,7 +284,7 @@ def submissions():
                 #tables.insert({'table_id' : table_id, 'invoice_code' : invoice_code, 'cols' : data, 'dicts' : d, 'submission_id' : submission_id})
                 tables.insert({'table_id' : table_id, 'invoice_code' : invoice_code, 'cols' : cols, 'data' : proc_file, 'submission_id' : submission_id})
 
-        return render_template('pages/app/submit.html', user_fullname=user_fullname, invoices=inv)
+        return render_template('app/add_submission.html', user_fullname=user_fullname, invoices=inv)
 
 @app.route('/app/batch_submissions', methods=['POST', 'GET'])
 def batch_submissions():
@@ -353,8 +369,15 @@ def batch_submissions():
 def view_forms():
     if 'username' in session:
         submissions = mongo.db.submissions
+        invoices = mongo.db.invoices
+
+        find_invoices = invoices.find({})
         find_submissions = submissions.find({})
         
+        invoice_codes = []
+        for inv in find_invoices:
+            invoice_codes.append(inv['invoice_code'])
+
         subs = []
         for sub in find_submissions:
             title = sub['title']
@@ -364,8 +387,30 @@ def view_forms():
             subid = sub['submission_id']
             sub = {'title' : title, 'form_code' : form_code, 'timestamp' : timestamp, 'uploaded_by' : uploaded_by, 'id' : subid}
             subs.append(sub)
-            
-        return render_template('pages/app/sortable.html', subs=subs)
+
+        invs = []
+        subm = []
+        counts = []
+        for inv_code in invoice_codes:
+            find_submissions_inv = submissions.find({'invoice_code' : inv_code})
+            subs = []
+            for sub in find_submissions_inv:
+                title = sub['title']
+                form_code = sub['invoice_code']
+                timestamp = sub['timestamp']
+                uploaded_by = sub['uploaded_by']
+                subid = sub['submission_id']
+                sub = {'title' : title, 'form_code' : form_code, 'timestamp' : timestamp, 'uploaded_by' : uploaded_by, 'id' : subid}
+                subs.append(sub)
+            subm.append(subs)
+            invs.append(inv_code)
+            counts.append(find_submissions_inv.count())
+
+        print(invs)
+        print(subm)
+
+        invlist = range(0, len(invs))
+        return render_template('app/view_submissions.html', subs=subs, invlist=invlist, invs=invs, subm=subm, counts=counts)
 
 
 @app.route('/app/submission/<submission_id>')
@@ -377,6 +422,9 @@ def view_submission(submission_id):
 
     keys = list(find_submission['keys'])
     values = list(find_submission['values'])
+
+    current_image_full = find_submission['file']
+    image_name = current_image_full.split('/')[-1]
 
     new_values = []
     for value in values:
@@ -402,9 +450,9 @@ def view_submission(submission_id):
         
         li = df1.values.tolist()
         print(li)
-        return render_template('pages/app/result.html', paramlist=paramlist, keys=keys, values=new_values, col_list=col_list, cols=cols, li=li, submission_id=submission_id)
+        return render_template('app/apps_result.html', paramlist=paramlist, keys=keys, values=new_values, col_list=col_list, cols=cols, li=li, submission_id=submission_id, current_image=image_name)
     else:
-        return render_template('pages/app/result.html', paramlist=paramlist, keys=keys, values=new_values, submission_id=submission_id)
+        return render_template('app/apps_result.html', paramlist=paramlist, keys=keys, values=new_values, submission_id=submission_id, current_image=image_name)
 
 # Login and register 
 @app.route('/register', methods=['POST', 'GET'])
@@ -427,7 +475,7 @@ def register():
 
         return 'A user with that Email id/username already exists'
 
-    return render_template('pages/app/register.html')
+    return render_template('app/auth_register.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -447,7 +495,7 @@ def userlogin():
     if 'username' in session:
         return redirect('/')
 
-    return render_template('pages/app/login.html')
+    return render_template('app/auth_login.html')
 
 @app.route('/logout')
 def logout():
@@ -500,12 +548,12 @@ def pointcloud_cdn(filename):
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('pages/app/404.html'), 404
+    return render_template('app/error_404.html'), 404
 
 
 @app.errorhandler(500)
 def page_unresponsive(e):
-    return render_template('pages/app/404.html'), 500
+    return render_template('app/error_500.html'), 500
 
 
 # Mobile
